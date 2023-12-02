@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+   box-sizing: border-box;
+   font-family: poppins;
+   margin: 0;
+   padding: 0;
+}
+
+main {
+   max-width: 80vw;
+   margin: 0 auto;
+}
+.custom-toggle {
+   border: none;
+}
+
+.hero-parent > div > p {
+   padding-right: 30px;
+}
+.hero-title {
+   width: 65%;
+   font-weight: 600;
+   font-size: 64px;
+}
+@media screen and (max-width: 1200px) {
+   html {
+      padding: 1em;
+   }
+   .hero-title {
+      width: 100%;
+   }
+   .hero-parent {
+      flex-direction: column !important;
+   }
+   .hero-title {
+      font-size: 50px;
+   }
+   .herobg {
+      object-fit: contain;
+      height: 400px;
+   }
+   .car-image {
+      right: 0 !important;
+      object-fit: contain;
+      width: 90vw;
+      height: 100vh;
+   }
+   .btn { 
+      width: 100%;
+   }
+}
