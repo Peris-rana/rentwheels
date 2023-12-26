@@ -8,13 +8,14 @@ const SignUpForm = () => {
    return (
       <Layout>
          <Row className='mt-5'>
-            <Col md={4}>
+            <p className='font-weight-bold fs-1 '>Sign In</p>
+            <Col md={{ span: 6 }}>
                <Form>
                   <Form.Group className='mb-3' controlId=''>
                      <Form.Control
                         className='mb-4'
                         type='text'
-                        placeholder=' Name'
+                        placeholder='First Name'
                      />
                      <Form.Control
                         className='mb-4'
@@ -24,12 +25,12 @@ const SignUpForm = () => {
                      <Form.Control
                         className='mb-4'
                         type='email'
-                        placeholder=' Address'
+                        placeholder='Email'
                      />
                   </Form.Group>
                </Form>
             </Col>
-            <Col md={4}>
+            <Col md={{ span: 6 }}>
                <Form>
                   <Form.Group className='mb-4' controlId=''>
                      <Form.Control
@@ -51,9 +52,11 @@ const SignUpForm = () => {
                </Form>
             </Col>
          </Row>
-         <Button variant='primary' type='submit' className='btn'>
-            Submit
-         </Button>
+         <Col md={6}>
+            <Button variant='primary' type='submit' className='btn'>
+               Submit
+            </Button>
+         </Col>
       </Layout>
    );
 };

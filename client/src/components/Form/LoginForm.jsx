@@ -10,6 +10,7 @@ const LoginForm = () => {
          <Row className='mt-5'>
             <Col md={{ span: 6 }}>
                <Form>
+                  <p className='font-weight-bold fs-1'>Log In</p>
                   <Form.Group className='mb-4' controlId='formBasicEmail'>
                      <Form.Control
                         className='mb-4'
