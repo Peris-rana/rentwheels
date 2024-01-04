@@ -14,3 +14,13 @@ export const addCarController = async (req, res) => {
     });
   }
 };
+
+//get-car
+export const getCarController = async (req, res) => {
+  try {
+    const cars = await carModel.find();
+    res.status(200).send({ cars });
+  } catch (error) {
+    res.status(404).json({ message: "Error in finding the car" });
+  }
+};
