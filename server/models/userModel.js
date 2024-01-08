@@ -24,6 +24,10 @@ const userSchema = mongoose.Schema(
          type: String,
          required: true,
       },
+      licenseFile: {
+         type: String,
+         required: true,
+      },
    },
    {
       timestamps: true,
