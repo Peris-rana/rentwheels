@@ -6,9 +6,10 @@ export const addCarController = async (req, res) => {
       const { originalname, path } = req.file;
       const parts = originalname.split('.');
       const ext = parts[parts.length - 1];
-      const newPath = path + '.' + ext;
-      fs.renameSync(path, newPath);
+      // const newPath = path + '.' + ext;
       const { model, details, rentalPrice } = req.body;
+      const newPath = `./uploads/carImages/${model}.${ext}`;
+      fs.renameSync(path, newPath);
       const car = await carModel.create({
          model,
          details,
