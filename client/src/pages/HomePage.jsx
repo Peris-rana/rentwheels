@@ -12,7 +12,7 @@ const HomePage = () => {
                <p className='hero-title mt-3'>
                   Rent a car-quick and super easy
                </p>
-               <p className='fs-3 custom-opacity mb-5'>
+               <p className='fs-3 custom-opacity mt-1'>
                   Make your car rental easy with our simple booking process.
                </p>
                <BookingForm />
