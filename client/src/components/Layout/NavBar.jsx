@@ -6,8 +6,10 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 function NavBar() {
    return (
       <Navbar collapseOnSelect expand='lg' className=''>
-         <Container className='bg-white p-0'>
-            <Navbar.Brand href='home'>Car-rentals</Navbar.Brand>
+         <Container className='bg-white p-0  m-0'>
+            <Navbar.Brand href='home' className='extra-bold'>
+               CarRentals
+            </Navbar.Brand>
             <Navbar.Toggle
                aria-controls='responsive-navbar-nav'
                className='custom-toggle p-0'

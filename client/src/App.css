@@ -5,13 +5,19 @@
    margin: 0;
    padding: 0;
 }
+.custom-opacity {
+   opacity: 0.6;
+}
 
 main {
-   max-width: 80vw;
+   max-width: 86vw;
    margin: 0 auto;
 }
 .custom-toggle {
    border: none;
+}
+.extra-bold {
+   font-weight: 900;
 }
 
 .hero-parent > div > p {
@@ -45,7 +51,7 @@ main {
       width: 90vw;
       height: 100vh;
    }
-   .btn { 
+   .btn {
       width: 100%;
    }
 }
