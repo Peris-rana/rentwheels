@@ -46,11 +46,11 @@ const MyCarousel = () => {
       <Carousel
          responsive={responsive}
          autoPlay={true}
-         autoPlaySpeed={3000}
+         autoPlaySpeed={1800}
          removeArrowOnDeviceType={['tablet', 'mobile']}
          containerClass='carousel-container'
          dotListClass='custom-dot-list-style'
-         itemClass='carousel-item-padding-40-px'
+         itemClass='carousel-item-padding-40-px m-2'
          infinite={true}
       >
          {carData.map((car, index) => (
