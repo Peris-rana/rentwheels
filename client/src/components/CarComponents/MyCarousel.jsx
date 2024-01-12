@@ -50,7 +50,7 @@ const MyCarousel = () => {
          removeArrowOnDeviceType={['tablet', 'mobile']}
          containerClass='carousel-container'
          dotListClass='custom-dot-list-style'
-         itemClass='carousel-item-padding-40-px m-2'
+         itemClass='carousel-item-padding-40-px'
          infinite={true}
       >
          {carData.map((car, index) => (
