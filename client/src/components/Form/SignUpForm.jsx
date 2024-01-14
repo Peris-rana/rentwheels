@@ -1,11 +1,13 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../Layout/Layout';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUpForm = () => {
    const [firstName, setFirstName] = useState('');
@@ -15,6 +17,8 @@ const SignUpForm = () => {
    const [phoneNumber, setPhoneNumber] = useState('');
    const [file, setFile] = useState('');
    const navigate = useNavigate();
+   const handleSuccess = (message) => toast.success(message);
+   const handleError = (message) => toast.error(message);
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -43,15 +47,27 @@ const SignUpForm = () => {
 
          if (response.data.success) {
             // Handle successful registration
-            alert('User registered successfully');
+            handleSuccess(response.data.message);
             navigate('/login');
          } else {
             // Handle unsuccessful registration
-            alert('Registration failed');
+            handleError(response.data.message);
          }
       } catch (error) {
-         console.error('Error during registration:', error);
-         // Handle error
+         if (axios.isAxiosError(error)) {
+            const { response } = error;
+            if (response) {
+               if (response.status === 400) {
+                  handleError(response.data.message);
+               } else if (response.status === 500) {
+                  handleError(response.data.message);
+               } else {
+                  handleError(response.error.message);
+               }
+            } else {
+               handleError('Check your details again');
+            }
+         }
       }
    };
 
@@ -114,6 +130,11 @@ const SignUpForm = () => {
                <Button variant='primary' type='submit' className='btn'>
                   Submit
                </Button>
+               <ToastContainer
+                  position='top-center'
+                  pauseOnHover={true}
+                  hideProgressBar={true}
+               />{' '}
             </Col>
          </form>
       </Layout>

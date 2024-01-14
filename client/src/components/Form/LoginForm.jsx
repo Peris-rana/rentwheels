@@ -1,14 +1,17 @@
+import { useState } from 'react';
 import Layout from '../Layout/Layout';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useState } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const LoginForm = () => {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
-
+   const handleSuccess = (message) => toast.success(message);
+   const handleError = (message) => toast.error(message);
    const handleSubmit = async (e) => {
       e.preventDefault();
       try {
@@ -19,13 +22,27 @@ const LoginForm = () => {
                password,
             }
          );
+
          if (response.data.success) {
-            alert('Login successful');
+            handleSuccess(response.data.message);
          } else {
-            alert('Error in login');
+            handleError(response.data.message);
          }
       } catch (error) {
-         console.log(error);
+         if (axios.isAxiosError(error)) {
+            const { response } = error;
+            if (response) {
+               if (response.status === 401) {
+                  handleError(response.data.message);
+               } else if (response.status === 404) {
+                  handleError(response.data.message);
+               } else {
+                  handleError('error');
+               }
+            }
+         } else {
+            handleError('error');
+         }
       }
    };
    return (
@@ -59,6 +76,11 @@ const LoginForm = () => {
                   <Button variant='primary' className='btn' type='submit'>
                      Submit
                   </Button>
+                  <ToastContainer
+                     position='top-center'
+                     pauseOnHover={true}
+                     hideProgressBar={true}
+                  />
                </Form>
             </Col>
          </Row>

@@ -57,13 +57,13 @@ export const loginUserController = async (req, res) => {
       const existingUser = await userModel.findOne({ email });
       if (!existingUser) {
          return res
-            .status(500)
+            .status(404)
             .send({ success: false, message: 'User not found' });
       }
       const matchPassword = bcrypt.compareSync(password, existingUser.password);
       if (!matchPassword) {
          return res
-            .status(500)
+            .status(401)
             .send({ success: false, message: 'Wrong password' });
       }
       const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET);
