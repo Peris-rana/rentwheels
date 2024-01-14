@@ -28,6 +28,18 @@ main {
    font-weight: 600;
    font-size: 64px;
 }
+.carousel-image {
+   width: 100%;
+   aspect-ratio: 3/2;
+   object-fit: contain;
+   mix-blend-mode: color-burn;
+   height: auto;
+}
+.selected-carousel-image {
+   width: 50%;
+   aspect-ratio: 3/2;
+   object-fit: contain;
+}
 @media screen and (max-width: 1200px) {
    html {
       padding: 1em;
@@ -51,6 +63,7 @@ main {
       width: 90vw;
       height: 100vh;
    }
+
    .btn {
       width: 100%;
    }

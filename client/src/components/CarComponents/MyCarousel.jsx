@@ -2,11 +2,51 @@ import { useState, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import axios from 'axios';
-import { Modal } from 'react-bootstrap';
+import { Modal, Row, Col, Form, Button } from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
 
 const MyCarousel = () => {
    const [carData, setCarData] = useState([]);
    const [selectedCar, setSelectedCar] = useState(null);
+   const [startDate, setStartDate] = useState(new Date());
+   const [endDate, setEndDate] = useState(new Date());
+   const [fromLocation, setFromLocation] = useState('');
+   const [toLocation, setToLocation] = useState('');
+   const [show, setShow] = useState(false);
+
+   // form submission
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log('Start Date:', startDate);
+      console.log('End Date:', endDate);
+      console.log('From Location:', fromLocation);
+      console.log('To Location:', toLocation);
+      handleClose();
+      alert('booking successful');
+   };
+   const handleStartDateChange = (date) => {
+      setStartDate(date);
+   };
+
+   const handleEndDateChange = (date) => {
+      setEndDate(date);
+   };
+
+   const handleFromLocationChange = (e) => {
+      setFromLocation(e.target.value);
+   };
+
+   const handleToLocationChange = (e) => {
+      setToLocation(e.target.value);
+   };
+   const handleShow = (car) => {
+      setSelectedCar(car);
+      setShow(true);
+   };
+   const handleClose = () => {
+      setShow(false);
+      setSelectedCar(null);
+   };
 
    useEffect(() => {
       // Fetch car data from your API
@@ -43,15 +83,7 @@ const MyCarousel = () => {
          slidesToSlide: 1,
       },
    };
-   const [show, setShow] = useState(false);
-   const handleShow = (car) => {
-      setSelectedCar(car);
-      setShow(true);
-   };
-   const handleClose = () => {
-      setShow(false);
-      setSelectedCar(null);
-   };
+
    return (
       <>
          <Carousel
@@ -69,6 +101,7 @@ const MyCarousel = () => {
                   <img
                      src={`${import.meta.env.VITE_APP_API}/${car.image}`}
                      alt={car.model}
+                     className='carousel-image'
                   />
                   {/* You can customize the card content based on your car data */}
                   <h3 className='fw-bold'>{car.model}</h3>
@@ -87,7 +120,7 @@ const MyCarousel = () => {
                </div>
             ))}
          </Carousel>
-         <Modal show={selectedCar != null}>
+         <Modal size='lg' show={selectedCar != null}>
             <Modal.Header>
                <Modal.Title>Booking Form</Modal.Title>
                <button
@@ -100,7 +133,75 @@ const MyCarousel = () => {
                ></button>
             </Modal.Header>
             <Modal.Body>
-               <p>{selectedCar && selectedCar.model}</p>
+               <p className='fs-5 extra-bold'>
+                  {selectedCar && selectedCar.model}
+               </p>
+               {selectedCar && (
+                  <>
+                     <img
+                        src={`${import.meta.env.VITE_APP_API}/${
+                           selectedCar.image
+                        }`}
+                        alt={selectedCar.model}
+                        className='selected-carousel-image'
+                     />
+                  </>
+               )}
+               <Form onSubmit={handleSubmit}>
+                  <Row>
+                     <Col>
+                        <Form.Group controlId='formFromLocation'>
+                           <Form.Label>From</Form.Label>
+                           <Form.Control
+                              type='text'
+                              placeholder='Enter location'
+                              value={fromLocation}
+                              onChange={handleFromLocationChange}
+                           />
+                        </Form.Group>
+                     </Col>
+                     <Col>
+                        <Form.Group controlId='formToLocation'>
+                           <Form.Label>To</Form.Label>
+                           <Form.Control
+                              type='text'
+                              placeholder='Enter location'
+                              value={toLocation}
+                              onChange={handleToLocationChange}
+                           />
+                        </Form.Group>
+                     </Col>
+                  </Row>
+
+                  <Row>
+                     <Col>
+                        <Form.Group controlId='formStartDate'>
+                           <Form.Label>Start Date</Form.Label>
+                           <DatePicker
+                              selected={startDate}
+                              onChange={handleStartDateChange}
+                              className='form-control'
+                              dateFormat='MM/dd/yyyy'
+                           />
+                        </Form.Group>
+                     </Col>
+                     <Col>
+                        <Form.Group controlId='formEndDate'>
+                           <Form.Label>End Date</Form.Label>
+                           <DatePicker
+                              selected={endDate}
+                              onChange={handleEndDateChange}
+                              className='form-control'
+                              dateFormat='MM/dd/yyyy'
+                           />
+                        </Form.Group>
+                     </Col>
+                  </Row>
+
+                  <Button variant='primary mt-4' type='submit'>
+                     Submit
+                  </Button>
+               </Form>
             </Modal.Body>
          </Modal>{' '}
       </>
