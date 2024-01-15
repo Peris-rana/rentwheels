@@ -48,7 +48,10 @@ const SignUpForm = () => {
          if (response.data.success) {
             // Handle successful registration
             handleSuccess(response.data.message);
-            navigate('/login');
+
+            setTimeout(() => {
+               navigate('/login');
+            }, 3000);
          } else {
             // Handle unsuccessful registration
             handleError(response.data.message);
@@ -130,13 +133,13 @@ const SignUpForm = () => {
                <Button variant='primary' type='submit' className='btn'>
                   Submit
                </Button>
-               <ToastContainer
-                  position='top-center'
-                  pauseOnHover={true}
-                  hideProgressBar={true}
-               />{' '}
             </Col>
          </form>
+         <ToastContainer
+            position='top-center'
+            pauseOnHover={true}
+            hideProgressBar={true}
+         />{' '}
       </Layout>
    );
 };

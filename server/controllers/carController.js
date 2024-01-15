@@ -40,11 +40,14 @@ export const getCarController = async (req, res) => {
 export const updateCarController = async (req, res) => {
    try {
       const { _id, model, details, rentalPrice } = req.body;
-      const car = await carModel.findOneAndUpdate({
-         _id,
+      const updateObject = {
          model,
          details,
          rentalPrice,
+      };
+
+      const car = await carModel.findByIdAndUpdate(_id, updateObject, {
+         new: true,
       });
       res.status(200).send({ car });
    } catch (error) {
