@@ -4,6 +4,7 @@
    box-sizing: border-box;
 }
 
+
 a {
    color: inherit !important;
    text-decoration: none !important;
@@ -11,11 +12,11 @@ a {
    border-radius: 10px;
 }
 .sidebar ul li a:hover {
-   background-color: #0d6efd;
+   background-color: #434f5a;
    color: #fff !important;
 }
 i {
-   color: #ff0000;
+   color: #343943;
 }
 .sidebar ul li a:hover i {
    color: #fff !important;

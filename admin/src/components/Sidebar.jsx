@@ -1,4 +1,6 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { Dropdown } from 'react-bootstrap';
+
 const Sidebar = () => {
    return (
       <div className='d-flex justify-content-between flex-column  p-3  vh-100 sidebar'>
@@ -9,32 +11,64 @@ const Sidebar = () => {
             </a>
             <hr className='text-secondary' />
             <ul className='nav nav-pills flex-column mt-2'>
-               <li className='nav-item p-3'>
-                  <a href='' className='p-3'>
-                     <i className='bi bi-speedometer2 me-3 fs-4'></i>
-                     <span className='fs-4'></span>
-                     <strong>Dashboard</strong>
-                  </a>
-               </li>
-               <li className='nav-item p-3'>
-                  <a href='' className='p-3'>
+               {/* <li className='nav-item p-3'>
+                  <a href='' className='p-2'>
                      <i className='bi bi-people me-3 fs-4 '></i>
                      <span className='fs-4'></span>
                      <strong>Users</strong>
                   </a>
+               </li> */}
+               <li className='nav-item p-2'>
+                  <Dropdown>
+                     <Dropdown.Toggle
+                        variant='link'
+                        className='p-3 text-black text-decoration-none'
+                     >
+                        <i className='bi bi-people me-3 fs-4'></i>
+                        <span className='fs-4'></span>
+                        <strong>Users</strong>
+                     </Dropdown.Toggle>
+                     <Dropdown.Menu>
+                        <Dropdown.Item href=''>Add user</Dropdown.Item>
+                        <Dropdown.Item href=''>View user </Dropdown.Item>
+                        <Dropdown.Item href=''>Delete user</Dropdown.Item>
+                     </Dropdown.Menu>
+                  </Dropdown>
+               </li>
+               <li className='nav-item p-2'>
+                  <Dropdown>
+                     <Dropdown.Toggle
+                        variant='link'
+                        className='p-3 text-black text-decoration-none'
+                     >
+                        <i className='bi bi-car-front me-3 fs-4'></i>
+                        <span className='fs-4'></span>
+                        <strong>Cars</strong>
+                     </Dropdown.Toggle>
+                     <Dropdown.Menu>
+                        <Dropdown.Item href=''>Add car</Dropdown.Item>
+                        <Dropdown.Item href=''>Update car </Dropdown.Item>
+                        <Dropdown.Item href=''>Delete car</Dropdown.Item>
+                     </Dropdown.Menu>
+                  </Dropdown>
                </li>
                <li className='nav-item p-3'>
-                  <a href='' className='p-3'>
-                     <i className='bi bi-car-front-fill me-3 fs-4'></i>
-                     <span className='fs-4'></span>
-                     <strong>Cars</strong>
-                  </a>
-               </li>
-               <li className='nav-item p-3'>
-                  <a href='' className='p-3'>
+                  <a href='' className='p-2'>
                      <i className='bi bi-grid me-3 fs-4'></i>
                      <span className='fs-4'></span>
                      <strong>Bookings</strong>
+                  </a>
+               </li>
+               <li className='nav-item p-3'>
+                  <a
+                     href='http://localhost:5173'
+                     className='p-2'
+                     target='_blank'
+                     rel='noopener noreferrer'
+                  >
+                     <i className='bi bi-app-indicator me-3 fs-4'></i>
+                     <span className='fs-4'></span>
+                     <strong>App</strong>
                   </a>
                </li>
             </ul>
