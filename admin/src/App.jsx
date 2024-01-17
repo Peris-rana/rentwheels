@@ -1,9 +1,9 @@
-import Sidebar from './components/Sidebar';
+import Dashboard from './components/Dashboard';
 const App = () => {
    return (
       <div className='d-flex'>
          <div className='w-auto'>
-            <Sidebar />
+            <Dashboard />
          </div>
          <div className='col'></div>
       </div>
