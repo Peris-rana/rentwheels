@@ -29,7 +29,7 @@ const Sidebar = () => {
                         <strong>Users</strong>
                      </Dropdown.Toggle>
                      <Dropdown.Menu>
-                        <Dropdown.Item href=''>Add user</Dropdown.Item>
+                        <Dropdown.Item href='add-car'>Add user</Dropdown.Item>
                         <Dropdown.Item href=''>View user </Dropdown.Item>
                         <Dropdown.Item href=''>Delete user</Dropdown.Item>
                      </Dropdown.Menu>

@@ -3,8 +3,6 @@
    padding: 0;
    box-sizing: border-box;
 }
-
-
 a {
    color: inherit !important;
    text-decoration: none !important;
@@ -20,4 +18,10 @@ i {
 }
 .sidebar ul li a:hover i {
    color: #fff !important;
+}
+.imp-layout {
+   border-radius: 10px;
+}
+Form {
+   width: 647px;
 }
