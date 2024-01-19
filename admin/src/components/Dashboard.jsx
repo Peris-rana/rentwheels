@@ -1,9 +1,8 @@
-import Sidebar from './Sidebar';
-
+import Layout from './Layout';
 const Dashboard = () => {
    return (
       <>
-         <Sidebar />
+         <Layout></Layout>
       </>
    );
 };

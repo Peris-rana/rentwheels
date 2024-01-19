@@ -2,12 +2,17 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   background-color: re;
 }
+
 a {
    color: inherit !important;
    text-decoration: none !important;
    cursor: pointer;
    border-radius: 10px;
+}
+.sidebar {
+   background-color: #f8fafd;
 }
 .sidebar ul li a:hover {
    background-color: #434f5a;
@@ -21,7 +26,21 @@ i {
 }
 .imp-layout {
    border-radius: 10px;
+   background-color: #ffffff;
 }
 Form {
    width: 647px;
+}
+.custom-input-style {
+   background-color: #f2f2f2 !important;
+   height: 45px;
+   width: 80%;
+}
+.title {
+   font-size: 6em;
+   letter-spacing: 4px;
+   width: auto;
+   height: 81vh;
+   padding: 50px;
+   border-radius: 10px;
 }

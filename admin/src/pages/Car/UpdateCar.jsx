@@ -1,12 +1,11 @@
 import { Form, Button, Row, Col } from 'react-bootstrap';
-
-const AddCar = () => {
+const UpdateCar = () => {
    const handleSubmit = (e) => {
       e.preventDefault();
    };
    return (
       <div>
-         <p className='mt-5 mb-5 fs-5 text-primary'># Add car</p>
+         <p className='mt-5 mb-5 fs-5 text-primary'># Update car</p>
 
          <Form onSubmit={handleSubmit}>
             <Row>
@@ -51,13 +50,13 @@ const AddCar = () => {
                   </Form.Group>
                </Col>
             </Row>
-         </Form>
 
-         <Button variant='primary' type='submit'>
-            Add Car
-         </Button>
+            <Button variant='primary' type='submit'>
+               Update Car
+            </Button>
+         </Form>
       </div>
    );
 };
 
-export default AddCar;
+export default UpdateCar;

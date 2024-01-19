@@ -1,14 +1,15 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Dropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
    return (
       <div className='d-flex justify-content-between flex-column  p-3  vh-100 sidebar'>
          <div>
-            <a href='' className='p-3'>
+            <Link to='/' className='p-3'>
                <i className='bi bi-car-front-fill fs-4 me-4'></i>
                <span className='fs-4'>car-rentals</span>
-            </a>
+            </Link>
             <hr className='text-secondary' />
             <ul className='nav nav-pills flex-column mt-2'>
                {/* <li className='nav-item p-3'>
@@ -29,9 +30,15 @@ const Sidebar = () => {
                         <strong>Users</strong>
                      </Dropdown.Toggle>
                      <Dropdown.Menu>
-                        <Dropdown.Item href='add-car'>Add user</Dropdown.Item>
-                        <Dropdown.Item href=''>View user </Dropdown.Item>
-                        <Dropdown.Item href=''>Delete user</Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/add-user'>
+                           Add user
+                        </Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/view-user'>
+                           View user{' '}
+                        </Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/view-user'>
+                           Delete user
+                        </Dropdown.Item>
                      </Dropdown.Menu>
                   </Dropdown>
                </li>
@@ -46,9 +53,15 @@ const Sidebar = () => {
                         <strong>Cars</strong>
                      </Dropdown.Toggle>
                      <Dropdown.Menu>
-                        <Dropdown.Item href=''>Add car</Dropdown.Item>
-                        <Dropdown.Item href=''>Update car </Dropdown.Item>
-                        <Dropdown.Item href=''>Delete car</Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/add-car'>
+                           Add car
+                        </Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/update-car'>
+                           Update car
+                        </Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/delete-car'>
+                           Delete car
+                        </Dropdown.Item>
                      </Dropdown.Menu>
                   </Dropdown>
                </li>
