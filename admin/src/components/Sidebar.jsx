@@ -36,7 +36,7 @@ const Sidebar = () => {
                         <Dropdown.Item as={Link} to='/view-user'>
                            View user{' '}
                         </Dropdown.Item>
-                        <Dropdown.Item as={Link} to='/view-user'>
+                        <Dropdown.Item as={Link} to='/delete-user'>
                            Delete user
                         </Dropdown.Item>
                      </Dropdown.Menu>

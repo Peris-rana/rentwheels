@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import AddCar from './pages/Car/AddCar';
 import UpdateCar from './pages/Car/UpdateCar';
 import AddUser from './pages/User/AddUser';
-
+import ViewUser from './pages/User/ViewUser';
+import DeleteUser from './pages/User/DeleteUser';
 const App = () => {
    return (
       <div className='d-flex'>
@@ -23,11 +24,12 @@ const App = () => {
                   }
                />
                <Route path='/add-user' element={<AddUser />} />
+               <Route path='/view-user' element={<ViewUser />} />
+               <Route path='/delete-user' element={<DeleteUser />} />
                <Route path='/add-car' element={<AddCar />} />
                <Route path='/update-car' element={<UpdateCar />} />
             </Routes>
          </div>
-         
       </div>
    );
 };

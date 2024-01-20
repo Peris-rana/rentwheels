@@ -1,6 +1,8 @@
 import express from 'express';
 import multer from 'multer';
 import {
+   deleteUserController,
+   getUserController,
    loginUserController,
    registerUserController,
 } from '../controllers/userController.js';
@@ -12,4 +14,6 @@ router.post(
    registerUserController
 );
 router.post('/login-user', loginUserController);
+router.get('/get-user', getUserController);
+router.delete("/delete-user/:id", deleteUserController)
 export default router;

@@ -98,6 +98,7 @@ const AddUser = () => {
                      <Form.Control
                         type='file'
                         className='custom-input-style'
+                        accept='image/png,image/jpeg,image/jpg/,application/pdf'
                         onChange={(e) => setFile(e.target.files[0])}
                      />
                   </Form.Group>

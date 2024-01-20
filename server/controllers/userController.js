@@ -81,3 +81,47 @@ export const loginUserController = async (req, res) => {
       });
    }
 };
+
+//for admin
+//get all the user
+export const getUserController = async (req, res) => {
+   try {
+      const user = await userModel.find();
+      res.status(200).send({ user });
+   } catch (error) {
+      res.status(500).json({
+         success: false,
+         message: 'Error in Listing the user',
+         error: error.message,
+      });
+   }
+};
+
+//delete a user 
+export const deleteUserController = async (req, res) => {
+   const userId = req.params.id; // Assuming the user ID is passed in the URL parameter
+
+   try {
+      // Check if the user exists
+      const existingUser = await userModel.findById(userId);
+      if (!existingUser) {
+         return res
+            .status(404)
+            .json({ success: false, message: 'User not found' });
+      }
+
+      // Perform the deletion
+      await userModel.findByIdAndDelete(userId);
+
+      res.status(200).json({
+         success: true,
+         message: 'User deleted successfully',
+      });
+   } catch (error) {
+      res.status(500).json({
+         success: false,
+         message: 'Error in deleting user',
+         error: error.message,
+      });
+   }
+};
