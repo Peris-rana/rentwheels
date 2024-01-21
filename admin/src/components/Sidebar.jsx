@@ -56,6 +56,9 @@ const Sidebar = () => {
                         <Dropdown.Item as={Link} to='/add-car'>
                            Add car
                         </Dropdown.Item>
+                        <Dropdown.Item as={Link} to='/view-cars'>
+                           View cars
+                        </Dropdown.Item>
                         <Dropdown.Item as={Link} to='/update-car'>
                            Update car
                         </Dropdown.Item>

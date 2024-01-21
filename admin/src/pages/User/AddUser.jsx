@@ -12,7 +12,15 @@ const AddUser = () => {
    const [phoneNumber, setPhoneNumber] = useState('');
    const [file, setFile] = useState('');
 
-   const handleSuccess = (message) => toast.success(message);
+   const handleSuccess = (message) => {
+      toast.success(message);
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setPhoneNumber('');
+      setFile('');
+   };
    const handleError = (message) => toast.error(message);
 
    const handleSubmit = async (e) => {
@@ -151,7 +159,7 @@ const AddUser = () => {
             position='top-center'
             pauseOnHover={true}
             hideProgressBar={true}
-         />{' '}
+         />
       </div>
    );
 };

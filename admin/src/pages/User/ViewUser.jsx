@@ -22,7 +22,7 @@ const ViewUser = () => {
 
    return (
       <>
-         <p className='mt-5 mb-5 fs-5 text-primary'># view users</p>
+         <p className='mt-5 mb-5 fs-5 text-primary'># Users</p>
          <Table hover>
             <thead>
                <tr>

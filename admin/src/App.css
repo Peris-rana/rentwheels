@@ -44,3 +44,18 @@ Form {
    padding: 50px;
    border-radius: 10px;
 }
+.card {
+   text-transform: capitalize;
+   border-radius: 7px !important;
+   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+.card-body {
+   height: 315px;
+   padding: 13px !important;
+}
+.card-image {
+   width: 100%;
+   aspect-ratio: 3/2;
+   object-fit: contain;
+}
