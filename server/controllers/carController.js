@@ -6,15 +6,15 @@ export const addCarController = async (req, res) => {
       const { originalname, path } = req.file;
       const parts = originalname.split('.');
       const ext = parts[parts.length - 1];
-      // const newPath = path + '.' + ext;
+      // const newImagePath = path + '.' + ext;
       const { model, details, rentalPrice } = req.body;
-      const newPath = `./uploads/carImages/${model}.${ext}`;
-      fs.renameSync(path, newPath);
+      const newImagePath = `./uploads/carImages/${model}.${ext}`;
+      fs.renameSync(path, newImagePath);
       const car = await carModel.create({
          model,
          details,
          rentalPrice,
-         image: newPath,
+         image: newImagePath,
       });
       res.status(200).json({
          car,
@@ -44,16 +44,46 @@ export const getCarController = async (req, res) => {
 export const updateCarController = async (req, res) => {
    try {
       const { _id, model, details, rentalPrice } = req.body;
-      const updateObject = {
-         model,
-         details,
-         rentalPrice,
-      };
+      if (req.file) {
+         const { originalname, path } = req.file;
+         const parts = originalname.split('.');
+         const ext = parts[parts.length - 1];
+         const newImagePath = `./uploads/carImages/${model}.${ext}`;
 
-      const car = await carModel.findByIdAndUpdate(_id, updateObject, {
-         new: true,
-      });
-      res.status(200).json({ car });
+         //rename the file with new image name
+         fs.renameSync(path, newImagePath);
+         const updateObject = {
+            model,
+            details,
+            rentalPrice,
+            image: newImagePath,
+         };
+         // update the car with new image path
+         const car = await carModel.findByIdAndUpdate(_id, updateObject, {
+            new: true,
+         });
+         res.status(200).json({
+            car,
+            success: true,
+            message: 'Car updated successfully',
+         });
+      } else {
+         // if no new image is provided  , update  other fields without changing the image path
+         const updateObject = {
+            model,
+            details,
+            rentalPrice,
+         };
+         //update the car without changeing the image path
+         const car = await carModel.findByIdAndUpdate(_id, updateObject, {
+            new: true,
+         });
+         res.status(200).json({
+            car,
+            success: true,
+            message: 'Car updated successfully',
+         });
+      }
    } catch (error) {
       res.status(500).json({ message: 'Error in updating the car' });
    }

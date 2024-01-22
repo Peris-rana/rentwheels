@@ -22,7 +22,7 @@ const DeleteCar = () => {
             handleSuccess(response.data.message);
          }
       } catch (error) {
-         handleError('Check ');
+         handleError('Add an id ');
       }
    };
    return (
@@ -31,6 +31,7 @@ const DeleteCar = () => {
          <Col md={8}>
             <Form.Control
                value={CarId}
+               className='custom-input-style'
                onChange={(e) => {
                   setCarId(e.target.value);
                }}

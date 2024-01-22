@@ -11,6 +11,6 @@ const uploadMiddleware = multer({ dest: './uploads/carImages' });
 const router = express.Router();
 router.post('/add-car', uploadMiddleware.single('file'), addCarController);
 router.get('/get-car', getCarController);
-router.put('/update-car', updateCarController);
+router.put('/update-car', uploadMiddleware.single('file'), updateCarController);
 router.delete('/delete-car/:id', deleteCarController);
 export default router;
