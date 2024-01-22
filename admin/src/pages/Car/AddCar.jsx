@@ -69,7 +69,7 @@ const AddCar = () => {
                         }}
                      />
                   </Form.Group>
-                  <Form.Group className='mb-3' controlId='car image'>
+                  <Form.Group className='mb-3' controlId='car image' key={file}>
                      <Form.Label>Image</Form.Label>
                      <Form.Control
                         type='file'

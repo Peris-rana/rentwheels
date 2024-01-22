@@ -101,7 +101,7 @@ const AddUser = () => {
                   </Form.Group>
 
                   {/* License */}
-                  <Form.Group className='mb-4' controlId='license'>
+                  <Form.Group className='mb-4' controlId='license' key={file}>
                      <Form.Label>License</Form.Label>
                      <Form.Control
                         type='file'

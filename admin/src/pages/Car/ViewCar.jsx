@@ -37,7 +37,7 @@ const ViewCar = () => {
                         <Card.Body className='card-body'>
                            <h2>{car.model}</h2>
                            <Card.Text>Rs {car.rentalPrice}</Card.Text>
-                           <Card.Text className='text-secondary'>
+                           <Card.Text className='text-success'>
                               car-Id {car._id}
                            </Card.Text>
                            <Card.Text className='car-details'>

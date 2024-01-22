@@ -10,7 +10,15 @@ const UpdateCar = () => {
    const [rentalPrice, setRentalPrice] = useState('');
    const [file, setFile] = useState('');
 
-   const handleSuccess = (message) => toast.success(message);
+   const handleSuccess = (message) => {
+      toast.success(message);
+      setCarId('');
+      setModel('');
+      setDetails('');
+      setRentalPrice('');
+      setFile('');
+   };
+
    const handleError = (message) => toast.error(message);
 
    const handleSubmit = async (e) => {
@@ -84,6 +92,7 @@ const UpdateCar = () => {
                   <Form.Group className='mb-3' controlId='car image'>
                      <Form.Label>Image</Form.Label>
                      <Form.Control
+                        key={file}
                         type='file'
                         placeholder='Document'
                         className='custom-input-style'
