@@ -68,7 +68,7 @@ const UpdateCar = () => {
                      type='text'
                      placeholder='Enter car id'
                      name='_id'
-                     className='custom-input-style m-1 mt-1'
+                     className='custom-input-style mb-3'
                      value={_id}
                      onChange={(e) => {
                         setCarId(e.target.value);

@@ -34,7 +34,7 @@ Form {
 .custom-input-style {
    background-color: #f2f2f2 !important;
    height: 45px;
-   width: 93% !important;
+   width: 100% !important;
 }
 .title {
    font-size: 6em;
