@@ -20,6 +20,5 @@ router.delete('/delete-user/:id', deleteUserController);
 router.get('/test', requireSignIn, (req, res) => {
    res.send('protected route');
 });
-route.get
 
 export default router;
