@@ -3,10 +3,13 @@ import herobg from "../assets/hero-bg.png";
 import CarImage from "../assets/car-png-16835.png";
 import BookingForm from "../components/Form/BookingForm";
 import CarCatalogue from "../components/CarComponents/CarCatalogue";
+import { useAuth } from "../context/auth";
 
 const HomePage = () => {
+  const [auth, setAuth] = useAuth();
   return (
     <Layout>
+      <code className="text-primary">{JSON.stringify(auth)}</code>
       <div className="hero-parent d-flex justify-content-evenly">
         <div>
           <p className="hero-title mt-3">Rent a car-quick and super easy</p>
