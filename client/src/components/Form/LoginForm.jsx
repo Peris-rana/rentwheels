@@ -32,7 +32,7 @@ const LoginForm = () => {
         setTimeout(() => {
           setAuth({
             ...auth,
-            user: response.data.user.email,
+            user: response.data.user,
             token: response.data.token,
           });
           localStorage.setItem("auth", JSON.stringify(response.data));
