@@ -4,6 +4,8 @@ import 'react-multi-carousel/lib/styles.css';
 import axios from 'axios';
 import { Modal, Row, Col, Form, Button } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
+import { useAuth } from '../../context/auth';
+import { toast } from 'react-toastify';
 
 const MyCarousel = () => {
    const [carData, setCarData] = useState([]);
@@ -13,16 +15,16 @@ const MyCarousel = () => {
    const [fromLocation, setFromLocation] = useState('');
    const [toLocation, setToLocation] = useState('');
    const [show, setShow] = useState(false);
-
+   const [auth, setAuth] = useAuth();
    // form submission
    const handleSubmit = (e) => {
       e.preventDefault();
+
       console.log('Start Date:', startDate);
       console.log('End Date:', endDate);
       console.log('From Location:', fromLocation);
       console.log('To Location:', toLocation);
       handleClose();
-      alert('booking successful');
    };
    const handleStartDateChange = (date) => {
       setStartDate(date);
@@ -111,7 +113,11 @@ const MyCarousel = () => {
                      <button
                         className=' btn btn-primary mt-3'
                         onClick={() => {
-                           handleShow(car);
+                           if (auth.user) {
+                              handleShow(car);
+                           } else {
+                              toast.error('Login or signup to rent');
+                           }
                         }}
                      >
                         Rent now
