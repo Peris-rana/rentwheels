@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -16,14 +17,62 @@ const MyCarousel = () => {
    const [toLocation, setToLocation] = useState('');
    const [show, setShow] = useState(false);
    const [auth, setAuth] = useAuth();
-   // form submission
-   const handleSubmit = (e) => {
-      e.preventDefault();
 
-      console.log('Start Date:', startDate);
-      console.log('End Date:', endDate);
-      console.log('From Location:', fromLocation);
-      console.log('To Location:', toLocation);
+   //success
+   const handleSuccess = (message) => {
+      toast.success(message);
+      setStartDate(new Date());
+      setEndDate(new Date());
+      setFromLocation('');
+      setToLocation('');
+   };
+   //error
+   const handleError = (message) => {
+      toast.error(message);
+   };
+   //form submission
+   //send  form data
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+      let isValid = true;
+      if (!toLocation || !fromLocation) {
+         handleError('Location cannot be empty');
+         isValid = false;
+         return;
+      }
+
+      if (!startDate || !endDate || startDate >= endDate) {
+         handleError('Please select valid date');
+         isValid = false;
+         return;
+      }
+      if (!isValid) {
+         return;
+      }
+      const data = {
+         fullName: `${auth.user.firstName} ${auth.user.lastName}`,
+         email: auth.user.email,
+         car: selectedCar._id,
+         user: auth.user._id,
+         startDate: startDate,
+         endDate: endDate,
+         fromLocation: fromLocation,
+         toLocation: toLocation,
+         rentalPrice: selectedCar.rentalPrice,
+      };
+      console.log(data);
+      try {
+         const bookingData = await axios.post(
+            `${import.meta.env.VITE_APP_API}/api/bookings/add-booking`,
+            data
+         );
+         if (bookingData.status === 200) {
+            handleSuccess(bookingData.data.message);
+         }
+      } catch (error) {
+         console.log(error);
+      }
+
       handleClose();
    };
    const handleStartDateChange = (date) => {
@@ -180,7 +229,7 @@ const MyCarousel = () => {
                   </Row>
 
                   <Row>
-                     <Col>
+                     <Col className='mt-3'>
                         <Form.Group controlId='formStartDate'>
                            <Form.Label>Start Date</Form.Label>
                            <DatePicker
@@ -191,7 +240,7 @@ const MyCarousel = () => {
                            />
                         </Form.Group>
                      </Col>
-                     <Col>
+                     <Col className='mt-3'>
                         <Form.Group controlId='formEndDate'>
                            <Form.Label>End Date</Form.Label>
                            <DatePicker
