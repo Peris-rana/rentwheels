@@ -40,6 +40,12 @@ main {
    aspect-ratio: 3/2;
    object-fit: contain;
 }
+
+@media screen and (max-width:1366px) { 
+   .car-details{ 
+      height: 130px
+   }
+}
 @media screen and (max-width: 1200px) {
    html {
       padding: 1em;
@@ -66,5 +72,8 @@ main {
 
    .btn {
       width: 100%;
+   }
+   .car-details { 
+      height : 132px;
    }
 }

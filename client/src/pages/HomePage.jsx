@@ -1,25 +1,31 @@
 import Layout from "../components/Layout/Layout";
 import herobg from "../assets/hero-bg.png";
 import CarImage from "../assets/car-png-16835.png";
-import BookingForm from "../components/Form/BookingForm";
 import CarCatalogue from "../components/CarComponents/CarCatalogue";
-import { useAuth } from "../context/auth";
-
+import { Button } from "react-bootstrap";
 const HomePage = () => {
-  const [auth, setAuth] = useAuth();
+  const handlleClick = () => {
+    const CarCatalogueElement = document.getElementById("CarCatalogue");
+
+    if (CarCatalogueElement) {
+      CarCatalogueElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
   return (
     <Layout>
-      <code className="text-primary">{JSON.stringify(auth)}</code>
       <div className="hero-parent d-flex justify-content-evenly">
         <div>
           <p className="hero-title mt-3">Rent a car-quick and super easy</p>
           <p className="fs-3 custom-opacity mt-1">
             Make your car rental easy with our simple booking process.
           </p>
-          <BookingForm />
+          <Button onClick={handlleClick}>Book Now</Button>
         </div>
         <div className="herobg position-relative w-100">
-          <img src={herobg} className="h-100 w-100 mt-5 " alt="hero-bg" />
+          <img src={herobg} className="h-100 w-100 mt-4 " alt="hero-bg" />
           <img
             src={CarImage}
             className="position-absolute car-image "
@@ -27,7 +33,9 @@ const HomePage = () => {
           />
         </div>
       </div>
-      <CarCatalogue />
+      <div id="CarCatalogue">
+        <CarCatalogue />
+      </div>
     </Layout>
   );
 };
