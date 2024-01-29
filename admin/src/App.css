@@ -2,7 +2,6 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
-   background-color: re;
 }
 
 a {
@@ -12,10 +11,10 @@ a {
    border-radius: 10px;
 }
 .sidebar {
-   background-color: #f8fafd;
+   background-color: #ffffff;
 }
 .sidebar ul li a:hover {
-   background-color: #434f5a;
+   background-color: #9f9aec;
    color: #fff !important;
 }
 i {
@@ -46,16 +45,45 @@ Form {
 }
 .card {
    text-transform: capitalize;
-   border-radius: 7px !important;
+   border-radius: 12px !important;
+   /* border-top: 6px solid #efa0a0 !important; */
+   border-top: 5px solid #f8a0a0 !important;
+   border-right: none !important;
+   border-left: none !important;
+   border-bottom: none !important;
+   height: 590px !important;
+   /* border-radius: 7px !important;
    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
-      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+      rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; */
 }
-.card-body {
-   height: 315px;
-   padding: 13px !important;
-}
+
 .card-image {
    width: 100%;
    aspect-ratio: 3/2;
    object-fit: contain;
+}
+.car-details {
+   opacity: 0.9;
+   font-size: 10px;
+}
+thead tr th {
+   opacity: 0.8;
+   font-size: 12px;
+}
+table tbody {
+   font-size: 14px;
+   opacity: 0.7;
+}
+.custom-app-button {
+   position: absolute;
+   right: 20px;
+   top: 12px;
+   border: none;
+   padding: 10px;
+   width: 100px;
+   border-radius: 10px;
+}
+
+.custom-td {
+   color: #3ea829 !important ;
 }

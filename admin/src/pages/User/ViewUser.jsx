@@ -36,8 +36,8 @@ const ViewUser = () => {
             <tbody>
                {userData.map((user) => (
                   <tr key={user.email}>
-                     <td className='text-success'>{user._id}</td>
-                     <td>{`${user.firstName} ${user.lastName}`}</td>
+                     <td className='custom-td'>{user._id}</td>
+                     <td className='text-capitalize'>{`${user.firstName} ${user.lastName}`}</td>
                      <td>{user.email}</td>
                      <td>{user.plainPassword}</td>
                      <td>{user.phoneNumber}</td>

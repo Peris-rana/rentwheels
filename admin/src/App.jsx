@@ -12,6 +12,17 @@ const App = () => {
       <div className='d-flex'>
          <div className='w-auto'>
             <Dashboard />
+            <a
+               href='http://localhost:5173'
+               className='p-2'
+               target='_blank'
+               rel='noopener noreferrer'
+            >
+               <button className='custom-app-button'>
+                  <i className='bi bi-app-indicator me-1 fs-5' />
+                  App
+               </button>
+            </a>
          </div>
          <div className='col m-2 p-2 imp-layout'>
             <Routes>

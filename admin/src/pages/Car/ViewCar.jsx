@@ -34,10 +34,12 @@ const ViewCar = () => {
                            alt={`Car ${index + 1}`}
                            className='card-image'
                         />
-                        <Card.Body className='card-body'>
-                           <h2>{car.model}</h2>
-                           <Card.Text>Rs {car.rentalPrice}</Card.Text>
-                           <Card.Text className='text-success'>
+                        <Card.Body>
+                           <h3>{car.model}</h3>
+                           <Card.Text className='text-secondary fs-4'>
+                              Rs {car.rentalPrice}
+                           </Card.Text>
+                           <Card.Text className='custom-td'>
                               car-Id {car._id}
                            </Card.Text>
                            <Card.Text className='car-details'>
