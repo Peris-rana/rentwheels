@@ -44,18 +44,22 @@ export const getCarController = async (req, res) => {
 export const updateCarController = async (req, res) => {
    try {
       const { _id, model, details, rentalPrice } = req.body;
+      const existingCarData = await carModel.findById(_id);
+      let newImagePath = existingCarData.image;
       if (req.file) {
          const { originalname, path } = req.file;
          const parts = originalname.split('.');
          const ext = parts[parts.length - 1];
-         const newImagePath = `./uploads/carImages/${model}.${ext}`;
+         const newModel = model || existingCarData.model;
+         newImagePath = `./uploads/carImages/${newModel}.${ext}`;
 
          //rename the file with new image name
          fs.renameSync(path, newImagePath);
+
          const updateObject = {
-            model,
-            details,
-            rentalPrice,
+            model: model || existingCarData.model,
+            details: details || existingCarData.details,
+            rentalPrice: rentalPrice || existingCarData.rentalPrice,
             image: newImagePath,
          };
          // update the car with new image path
@@ -68,11 +72,12 @@ export const updateCarController = async (req, res) => {
             message: 'Car updated successfully',
          });
       } else {
-         // if no new image is provided  , update  other fields without changing the image path
+         // if no new image is provided  , update  other fields without changing the image path and with the existing data
+
          const updateObject = {
-            model,
-            details,
-            rentalPrice,
+            model: model || existingCarData.model,
+            details: details || existingCarData.details,
+            rentalPrice: rentalPrice || existingCarData.rentalPrice,
          };
          //update the car without changeing the image path
          const car = await carModel.findByIdAndUpdate(_id, updateObject, {

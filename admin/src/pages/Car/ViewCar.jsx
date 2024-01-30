@@ -35,8 +35,8 @@ const ViewCar = () => {
                            className='card-image'
                         />
                         <Card.Body>
-                           <h3>{car.model}</h3>
-                           <Card.Text className='text-secondary fs-4'>
+                           <h2>{car.model}</h2>
+                           <Card.Text className='text-secondary fs-5'>
                               Rs {car.rentalPrice}
                            </Card.Text>
                            <Card.Text className='custom-td'>
