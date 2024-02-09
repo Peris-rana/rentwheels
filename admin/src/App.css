@@ -36,13 +36,17 @@ Form {
    width: 100% !important;
 }
 .title {
-   font-size: 6em;
-   letter-spacing: 4px;
-   width: auto;
-   height: 81vh;
-   padding: 50px;
+   font-size: 4em;
+   letter-spacing: 2px;
+   width: 75%;
+   padding : .75em ;
    border-radius: 10px;
+   text-transform: capitalize;
+   display: flex;
+   justify-content: flex-start;
+   margin : 1.3em;
 }
+
 .card {
    text-transform: capitalize;
    border-radius: 12px !important;
