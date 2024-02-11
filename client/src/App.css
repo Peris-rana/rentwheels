@@ -40,6 +40,9 @@ main {
    aspect-ratio: 3/2;
    object-fit: contain;
 }
+.car-details { 
+   height : 130px;
+}
 
 @media screen and (max-width:1366px) { 
    .car-details{ 

@@ -5,6 +5,7 @@ import "react-multi-carousel/lib/styles.css";
 import axios from "axios";
 import { Modal, Row, Col, Form, Button } from "react-bootstrap";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { useAuth } from "../../context/auth";
 import { toast } from "react-toastify";
 
@@ -198,7 +199,7 @@ const MyCarousel = () => {
               />
             </>
           )}
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} autoComplete="off">
             <Row>
               <Col>
                 <Form.Group controlId="formFromLocation">
