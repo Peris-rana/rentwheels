@@ -60,6 +60,7 @@ const MyCarousel = () => {
       fromLocation: fromLocation,
       toLocation: toLocation,
       rentalPrice: selectedCar.rentalPrice,
+      model : selectedCar.model,
     };
     console.log(data);
     try {

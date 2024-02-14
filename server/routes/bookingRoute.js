@@ -1,7 +1,11 @@
-import express from 'express';
-import { addBooking } from '../controllers/bookingController.js';
+import express from "express";
+import {
+  addBookingController,
+  getBookingController,
+} from "../controllers/bookingController.js";
 
 const router = express.Router();
 
-router.post('/add-booking', addBooking);
+router.post("/add-booking", addBookingController);
+router.get("/get-booking", getBookingController);
 export default router;
