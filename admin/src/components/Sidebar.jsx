@@ -69,11 +69,11 @@ const Sidebar = () => {
             </Dropdown>
           </li>
           <li className="nav-item p-3">
-            <a href="" className="p-2">
+            <Link to="/bookings" className="p-2">
               <i className="bi bi-grid me-3 fs-4"></i>
               <span className="fs-4"></span>
               <strong>Bookings</strong>
-            </a>
+            </Link>
           </li>
           <li className="nav-item p-3">
             <a

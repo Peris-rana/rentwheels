@@ -7,6 +7,7 @@ import ViewUser from "./pages/User/ViewUser";
 import DeleteUser from "./pages/User/DeleteUser";
 import DeleteCar from "./pages/Car/DeleteCar";
 import ViewCar from "./pages/Car/ViewCar";
+import ViewBookings from "./pages/Booking/ViewBookings";
 const App = () => {
   return (
     <div className="d-flex">
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="/view-cars" element={<ViewCar />} />
           <Route path="/update-car" element={<UpdateCar />} />
           <Route path="/delete-car" element={<DeleteCar />} />
+          <Route path="bookings" element={<ViewBookings />} />
         </Routes>
       </div>
     </div>
