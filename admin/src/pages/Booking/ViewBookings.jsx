@@ -28,19 +28,26 @@ const ViewBookings = () => {
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Email</th>
+            <th>Number</th>
             <th>Model</th>
             <th>Price</th>
+            <th>Start</th>
+            <th>End</th>
           </tr>
         </thead>
         <tbody>
           {bookingData.map((booking) => (
             <tr key={booking._id}>
               <td> {booking._id}</td>
-              <td> {booking.fullName}</td>
-              <td> {booking.email}</td>
-              <td> {booking.model}</td>
-              <td> {booking.rentalPrice}</td>
+              <td>
+                {" "}
+                {booking.user.firstName} {booking.user.lastName}
+              </td>
+              <td> {booking.user.phoneNumber}</td>
+              <td> {booking.car.model}</td>
+              <td> {booking.car.rentalPrice}</td>
+              <td>{booking.startDate}</td>
+              <td>{booking.endDate}</td>
             </tr>
           ))}
         </tbody>
