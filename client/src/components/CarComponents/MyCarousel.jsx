@@ -51,16 +51,12 @@ const MyCarousel = () => {
       return;
     }
     const data = {
-      fullName: `${auth.user.firstName} ${auth.user.lastName}`,
-      email: auth.user.email,
       car: selectedCar._id,
       user: auth.user._id,
       startDate: startDate,
       endDate: endDate,
       fromLocation: fromLocation,
       toLocation: toLocation,
-      rentalPrice: selectedCar.rentalPrice,
-      model : selectedCar.model,
     };
     console.log(data);
     try {
