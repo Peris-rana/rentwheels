@@ -7,12 +7,10 @@ export const addBookingController = async (req, res) => {
     const carId = booking.car;
     await carModel.findByIdAndUpdate(carId, { available: false });
 
-    res
-      .status(200)
-      .json({
-        booking: booking,
-        message: "Booking successful",
-      });
+    res.status(200).json({
+      booking: booking,
+      message: "Booking successful",
+    });
   } catch (error) {
     console.log(error);
   }
@@ -21,7 +19,7 @@ export const addBookingController = async (req, res) => {
 // get a booking
 export const getBookingController = async (req, res) => {
   try {
-    const booking = await bookingModel.find();
+    const booking = await bookingModel.find().populate("user").populate("car")
     res.status(200).json({
       booking,
       success: true,

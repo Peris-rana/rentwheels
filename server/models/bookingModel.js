@@ -2,14 +2,6 @@ import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema(
   {
-    fullName: {
-      type: String,
-      require: true,
-    },
-    email: {
-      type: String,
-      require: true,
-    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -24,8 +16,6 @@ const bookingSchema = new mongoose.Schema(
     toLocation: { type: String, required: true },
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
-    rentalPrice: { type: Number, required: true },
-    model: { type: String, required: true },
   },
   { timestamps: true }
 );
