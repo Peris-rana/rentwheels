@@ -1,15 +1,18 @@
 import bookingModel from "../models/bookingModel.js";
 import carModel from "../models/carModel.js";
+import { addBookingToQueue } from "../services/bookingScheduler.js";
 //add a new booking
 export const addBookingController = async (req, res) => {
   try {
+    const isCarBooked = await bookingModel.exists({ car: req.body.car });
+    if (isCarBooked) {
+      console.log("Requested car is already booked");
+      return res.json("Requested car is already booked");
+    }
     const booking = await bookingModel.create(req.body);
-    const carId = booking.car;
-    await carModel.findByIdAndUpdate(carId, { available: false });
-
+    await addBookingToQueue(booking);
     res.status(200).json({
-      booking: booking,
-      message: "Booking successful",
+      message: "Booking request received. Processing...",
     });
   } catch (error) {
     console.log(error);
