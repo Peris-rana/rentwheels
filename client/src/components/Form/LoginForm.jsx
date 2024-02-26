@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
+import { Link } from "react-router-dom";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -87,9 +88,17 @@ const LoginForm = () => {
                 }}
               />
             </Form.Group>
-            <Button variant="primary" className="btn" type="submit">
-              Submit
-            </Button>
+            <div className="d-flex align-items-center log-in">
+              <Button variant="primary" className="btn ml-3" type="submit">
+                Log in
+              </Button>
+              <div className="p-4">
+                <Link to="/signup">
+                  {" "}
+                  create new account
+                </Link>
+              </div>
+            </div>
           </Form>
         </Col>
       </Row>

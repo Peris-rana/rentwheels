@@ -43,7 +43,13 @@ main {
 .car-details { 
    height : 130px;
 }
-
+.rotate { 
+transform: rotate(358deg);
+background-color: rgb(255, 204, 177);
+border-radius: 6px;
+width:70%;
+padding : 10px
+}
 @media screen and (max-width:1366px) { 
    .car-details{ 
       height: 130px
@@ -78,5 +84,9 @@ main {
    }
    .car-details { 
       height : 132px;
+   }
+   .log-in { 
+      display: flex;
+      flex-direction: column;
    }
 }

@@ -157,18 +157,22 @@ const MyCarousel = () => {
             <p className=" mt-3 car-details">{car.details}</p>
             <p className="fs-5 ">Rs.{car.rentalPrice}</p>
             <p>
-              <button
-                className=" btn btn-primary "
-                onClick={() => {
-                  if (auth.user) {
-                    handleShow(car);
-                  } else {
-                    toast.error("Login or signup to rent");
-                  }
-                }}
-              >
-                Rent now
-              </button>
+              {car.available ? (
+                <button
+                  className=" btn btn-primary "
+                  onClick={() => {
+                    if (auth.user) {
+                      handleShow(car);
+                    } else {
+                      toast.error("Login or signup to rent");
+                    }
+                  }}
+                >
+                  Rent now
+                </button>
+              ) : (
+                <p className="text-danger fs-4  rotate">Not Available </p>
+              )}
             </p>
           </div>
         ))}
