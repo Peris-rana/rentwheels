@@ -35,6 +35,10 @@ main {
    mix-blend-mode: color-burn;
    height: auto;
 }
+.carousel-image:hover { 
+
+   transform: scale(1.1);
+}
 .selected-carousel-image {
    width: 50%;
    aspect-ratio: 3/2;
@@ -43,6 +47,7 @@ main {
 .car-details { 
    height : 130px;
 }
+
 .rotate { 
 transform: rotate(358deg);
 background-color: rgb(255, 204, 177);
