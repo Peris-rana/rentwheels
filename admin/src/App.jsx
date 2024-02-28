@@ -8,12 +8,13 @@ import DeleteUser from "./pages/User/DeleteUser";
 import DeleteCar from "./pages/Car/DeleteCar";
 import ViewCar from "./pages/Car/ViewCar";
 import ViewBookings from "./pages/Booking/ViewBookings";
+import DeleteBooking from "./pages/Booking/DeleteBooking";
 const App = () => {
   return (
     <div className="d-flex">
       <div className="w-auto">
         <Dashboard />
-        <a
+        {/* <a
           href="http://localhost:5173"
           className="p-2"
           target="_blank"
@@ -23,7 +24,7 @@ const App = () => {
             <i className="bi bi-app-indicator me-1 fs-5" />
             App
           </button>
-        </a>
+        </a> */}
       </div>
       <div className="col m-2 p-2 imp-layout">
         <Routes>
@@ -51,7 +52,8 @@ const App = () => {
           <Route path="/view-cars" element={<ViewCar />} />
           <Route path="/update-car" element={<UpdateCar />} />
           <Route path="/delete-car" element={<DeleteCar />} />
-          <Route path="bookings" element={<ViewBookings />} />
+          <Route path="/view-bookings" element={<ViewBookings />} />
+          <Route path="/delete-booking" element={<DeleteBooking />}></Route>
         </Routes>
       </div>
     </div>

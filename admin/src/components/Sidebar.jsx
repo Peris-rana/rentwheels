@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="d-flex justify-content-between flex-column  p-3 sidebar">
+    <div className="d-flex justify-content-between flex-column  p-5 sidebar">
       <div>
         <Link to="/" className="p-3">
           <i className="bi bi-car-front-fill fs-4 me-4"></i>
-          <span className="fs-4">car-rentals</span>
+          <span className="fs-4">RentWheels</span>
         </Link>
-        <hr className="text-secondary" />
+        <hr className="text-dark" />
         <ul className="nav nav-pills flex-column mt-2">
           {/* <li className='nav-item p-3'>
                   <a href='' className='p-2'>
@@ -23,7 +23,7 @@ const Sidebar = () => {
             <Dropdown>
               <Dropdown.Toggle
                 variant="link"
-                className="p-3 text-black text-decoration-none"
+                className="p-3 text-dark text-decoration-none"
               >
                 <i className="bi bi-people me-3 fs-4"></i>
                 <span className="fs-4"></span>
@@ -31,13 +31,13 @@ const Sidebar = () => {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to="/add-user">
-                  Add user
+                  Add User
                 </Dropdown.Item>
                 <Dropdown.Item as={Link} to="/view-user">
-                  View user{" "}
+                  View Users{" "}
                 </Dropdown.Item>
                 <Dropdown.Item as={Link} to="/delete-user">
-                  Delete user
+                  Delete User
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
@@ -46,7 +46,7 @@ const Sidebar = () => {
             <Dropdown>
               <Dropdown.Toggle
                 variant="link"
-                className="p-3 text-black text-decoration-none"
+                className="p-3 text-dark text-decoration-none"
               >
                 <i className="bi bi-car-front me-3 fs-4"></i>
                 <span className="fs-4"></span>
@@ -54,28 +54,41 @@ const Sidebar = () => {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to="/add-car">
-                  Add car
+                  Add Car
                 </Dropdown.Item>
                 <Dropdown.Item as={Link} to="/view-cars">
-                  View cars
+                  View Cars
                 </Dropdown.Item>
                 <Dropdown.Item as={Link} to="/update-car">
-                  Update car
+                  Update Car
                 </Dropdown.Item>
                 <Dropdown.Item as={Link} to="/delete-car">
-                  Delete car
+                  Delete Car
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </li>
-          <li className="nav-item p-3">
-            <Link to="/bookings" className="p-2">
-              <i className="bi bi-grid me-3 fs-4"></i>
-              <span className="fs-4"></span>
-              <strong>Bookings</strong>
-            </Link>
+          <li className="nav-item p-2">
+            <Dropdown>
+              <Dropdown.Toggle
+                variant="link"
+                className="p-3 text-dark text-decoration-none "
+              >
+                <i className="bi bi-grid me-3 fs-4"></i>
+                <span className="fs-4"></span>
+                <strong>Bookings</strong>
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item as={Link} to="/view-bookings">
+                  View Bookings
+                </Dropdown.Item>
+                <Dropdown.Item as={Link} to="/delete-booking">
+                  Delete Booking
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </li>
-          <li className="nav-item p-3">
+          <div className="nav-item p-3 app-link">
             <a
               href="http://localhost:5173"
               className="p-2"
@@ -83,10 +96,9 @@ const Sidebar = () => {
               rel="noopener noreferrer"
             >
               <i className="bi bi-app-indicator me-3 fs-4"></i>
-              <span className="fs-4"></span>
               <strong>App</strong>
             </a>
-          </li>
+          </div>
         </ul>
       </div>
     </div>

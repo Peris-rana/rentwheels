@@ -20,6 +20,12 @@ const ViewBookings = () => {
     };
     fetchBookingData();
   }, []);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(); // Format the date string
+  };
+
   return (
     <>
       <p className="mt-5 mb-5 fs-5 text-primary"># Bookings</p>
@@ -31,6 +37,7 @@ const ViewBookings = () => {
             <th>Number</th>
             <th>Model</th>
             <th>Price</th>
+            <th>Location</th>
             <th>Start</th>
             <th>End</th>
           </tr>
@@ -38,16 +45,19 @@ const ViewBookings = () => {
         <tbody>
           {bookingData.map((booking) => (
             <tr key={booking._id}>
-              <td> {booking._id}</td>
+              <td className="text-success"> {booking._id}</td>
               <td>
                 {" "}
                 {booking.user.firstName} {booking.user.lastName}
               </td>
               <td> {booking.user.phoneNumber}</td>
               <td> {booking.car.model}</td>
-              <td> {booking.car.rentalPrice}</td>
-              <td>{booking.startDate}</td>
-              <td>{booking.endDate}</td>
+              <td> Rs {booking.car.rentalPrice}</td>
+              <td>
+                {booking.fromLocation}- {booking.toLocation}
+              </td>
+              <td className="text-danger">{formatDate(booking.startDate)}</td>
+              <td className="text-danger">{formatDate(booking.endDate)}</td>
             </tr>
           ))}
         </tbody>
