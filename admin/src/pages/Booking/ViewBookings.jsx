@@ -1,6 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+
+const handleSuccess = (message) => {
+  toast.success(message);
+};
+const handleError = (message) => {
+  toast.error(message);
+};
 const ViewBookings = () => {
   const [bookingData, setBookingData] = useState([]);
   useEffect(() => {
@@ -32,8 +40,11 @@ const ViewBookings = () => {
         }
       );
       console.log("Booked");
+      console.log(response.data);
+      handleSuccess("Booking aproved");
     } catch (error) {
       console.log(error);
+      handleError(error);
     }
   };
   const formatDate = (dateString) => {
@@ -75,17 +86,23 @@ const ViewBookings = () => {
               <td className="text-danger">{formatDate(booking.startDate)}</td>
               <td className="text-danger">{formatDate(booking.endDate)}</td>
               <td>{booking.booked.toString()}</td>
-              <button
+              <Button
+                className="btn btn-secondary"
                 onClick={() => {
                   acceptBooking(booking.user._id, booking._id);
                 }}
               >
-                accept booking
-              </button>
+                accept
+              </Button>
             </tr>
           ))}
         </tbody>
       </Table>
+      <ToastContainer
+        position="top-center"
+        pauseOnHover={true}
+        hideProgressBar={true}
+      />{" "}
     </>
   );
 };

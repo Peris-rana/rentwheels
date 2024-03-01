@@ -4,6 +4,7 @@ import {
   deleteBookingController,
   getBookingController,
   acceptBookingController,
+  notificationController,
 } from "../controllers/bookingController.js";
 import { requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -13,4 +14,5 @@ router.post("/add-booking", addBookingController);
 router.post("/accept-booking", acceptBookingController);
 router.get("/get-booking", getBookingController);
 router.delete("/delete-booking/:bookingId", deleteBookingController);
+router.get("/get-notification", requireSignIn, notificationController);
 export default router;

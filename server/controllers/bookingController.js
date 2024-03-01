@@ -79,3 +79,16 @@ export const acceptBookingController = async (req, res) => {
     console.log(error);
   }
 };
+
+export const notificationController = async (req, res) => {
+  try {
+    const notifications = await notificationModel
+      .find({
+        user: req.user.id,
+      })
+      .exec();
+    return res.status(200).json({
+      notifications,
+    });
+  } catch (error) {}
+};

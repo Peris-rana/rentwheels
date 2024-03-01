@@ -5,9 +5,12 @@ import { useAuth } from "../../context/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function NavBar() {
   const [auth, setAuth] = useAuth();
+  const [notifications, setNotifications] = useState([]);
 
   const handleLogout = () => {
     toast.success("Logout successful");
@@ -15,6 +18,26 @@ function NavBar() {
     setTimeout(() => {
       setAuth({ ...auth, user: null, token: "" });
     }, 0);
+  };
+  useEffect(() => {
+    getNotifications();
+  }, []);
+
+  const getNotifications = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_API}/api/bookings/get-notification`,
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("auth")).token,
+          },
+        }
+      );
+      setNotifications(response.data.notifications);
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -28,8 +51,8 @@ function NavBar() {
             aria-controls="responsive-navbar-nav"
             className="custom-toggle p-0"
           />
-          <i className="bi bi-bell"></i>
-
+          <i className="bi bi-bell bi-lg"></i>
+          <p className=" rounded notify ">{notifications.length}</p>
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto ">
               {/* <Nav.Link href="home">Home</Nav.Link> */}
