@@ -16,6 +16,7 @@ const bookingSchema = new mongoose.Schema(
     toLocation: { type: String, required: true },
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
+    booked: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

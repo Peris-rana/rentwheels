@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useAuth } from "../../context/auth";
 import { toast } from "react-toastify";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const MyCarousel = () => {
   const [carData, setCarData] = useState([]);
@@ -154,6 +155,9 @@ const MyCarousel = () => {
             />
             {/* You can customize the card content based on your car data */}
             <h3 className="fw-bold">{car.model}</h3>
+            <h6>Specification</h6>
+            <i className="bi bi-person">{car.seats}</i>
+            <h6>Features</h6>
             <p className=" mt-3 car-details">{car.details}</p>
             <p className="fs-5 ">Rs.{car.rentalPrice}</p>
             <p>

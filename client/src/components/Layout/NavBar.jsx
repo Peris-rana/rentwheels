@@ -4,6 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { useAuth } from "../../context/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 function NavBar() {
   const [auth, setAuth] = useAuth();
@@ -27,6 +28,8 @@ function NavBar() {
             aria-controls="responsive-navbar-nav"
             className="custom-toggle p-0"
           />
+          <i className="bi bi-bell"></i>
+
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto ">
               {/* <Nav.Link href="home">Home</Nav.Link> */}

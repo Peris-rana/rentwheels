@@ -20,7 +20,22 @@ const ViewBookings = () => {
     };
     fetchBookingData();
   }, []);
+  const acceptBooking = async (userId, bookingId) => {
+    console.log(localStorage.getItem("auth"));
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_APP_API}/api/bookings/accept-booking`,
 
+        {
+          bookingId,
+          userId,
+        }
+      );
+      console.log("Booked");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(); // Format the date string
@@ -40,6 +55,7 @@ const ViewBookings = () => {
             <th>Location</th>
             <th>Start</th>
             <th>End</th>
+            <th>booked</th>
           </tr>
         </thead>
         <tbody>
@@ -58,6 +74,14 @@ const ViewBookings = () => {
               </td>
               <td className="text-danger">{formatDate(booking.startDate)}</td>
               <td className="text-danger">{formatDate(booking.endDate)}</td>
+              <td>{booking.booked.toString()}</td>
+              <button
+                onClick={() => {
+                  acceptBooking(booking.user._id, booking._id);
+                }}
+              >
+                accept booking
+              </button>
             </tr>
           ))}
         </tbody>

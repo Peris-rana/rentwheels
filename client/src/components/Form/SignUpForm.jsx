@@ -23,6 +23,17 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (phoneNumber.length !== 10) {
+      handleError("Phone number must be exactly 10 digits long");
+      return;
+    }
+    if (!/^[a-zA-Z]/.test(email)) {
+      handleError("Email must start with a string");
+      return;
+    }
+    if (password.length !== 6) {
+      handleError("Password must have 6 characters");
+    }
     const formData = new FormData();
     formData.append("firstName", firstName);
     formData.append("lastName", lastName);
@@ -92,6 +103,7 @@ const SignUpForm = () => {
                 className="mb-4"
                 type="file"
                 placeholder="Document"
+                accept="image/png,image/jpeg,image/jpg/"
                 onChange={(e) => setFile(e.target.files[0])}
               />
               <Form.Control

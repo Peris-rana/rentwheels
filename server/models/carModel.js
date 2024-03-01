@@ -1,30 +1,38 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 const carSchema = mongoose.Schema(
-   {
-      model: {
-         type: String,
-         required: true,
-      },
-      details: {
-         type: String,
-         required: true,
-      },
-      rentalPrice: {
-         type: Number,
-         required: true,
-      },
-      available: {
-         type: Boolean,
-         default: true,
-      },
-      image: {
-         type: String,
-         required: true,
-      },
-   },
-   {
-      timestamps: true,
-   }
+  {
+    model: {
+      type: String,
+      required: true,
+    },
+    seats: {
+      type: Number,
+      required: true,
+    },
+    doors: {
+      type: Number,
+      required: true,
+    },
+    details: {
+      type: String,
+      required: true,
+    },
+    rentalPrice: {
+      type: Number,
+      required: true,
+    },
+    available: {
+      type: Boolean,
+      default: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
 );
-const carModel = mongoose.model('Car', carSchema);
+const carModel = mongoose.model("Car", carSchema);
 export default carModel;

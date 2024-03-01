@@ -19,6 +19,10 @@ const LoginForm = () => {
   const handleError = (message) => toast.error(message);
   const handleSubmit = async (e) => {
     e.preventDefault();
+     if (!/^[a-zA-Z]/.test(email)) {
+       handleError("Email must start with a string");
+       return;
+     }
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_APP_API}/api/user/login-user`,

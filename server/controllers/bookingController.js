@@ -1,5 +1,6 @@
 import bookingModel from "../models/bookingModel.js";
 import carModel from "../models/carModel.js";
+import notificationModel from "../models/notificationModel.js";
 import { addBookingToQueue } from "../services/bookingScheduler.js";
 //add a new booking
 export const addBookingController = async (req, res) => {
@@ -45,6 +46,34 @@ export const deleteBookingController = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Booking deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const acceptBookingController = async (req, res) => {
+  const bookingId = req.body.bookingId;
+  const userId = req.body.userId;
+  // update booking table column booked to true
+  try {
+    const booking = await bookingModel.findByIdAndUpdate(bookingId, {
+      booked: true,
+    });
+    if (!booking) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+
+    // add to notification collection, userid, message and booking id
+    const notification = await notificationModel.create({
+      user: userId,
+      message: "Booking accepted",
+      booking: bookingId,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Booking accepted successfully",
     });
   } catch (error) {
     console.log(error);
