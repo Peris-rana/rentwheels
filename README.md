@@ -55,7 +55,7 @@ VITE_APP_API=http://localhost:5900
 VITE_APP_API=http://localhost:5900
 
 ### server
-MONGO_URL=mongodb://localhost:27017car-rental-system'
+MONGO_URL=mongodb://localhost:27017car-rental-system
 
 JWT_SECRET=qazwsx
 
@@ -64,12 +64,11 @@ create a database name car-rental-system in you system locally
 ## Screenshots
 
 ### admin
-homepage
-![homepage](./admin/src/assets/homepage.png)
 
 viewcars
 ![viewcars](./admin/src/assets/viewcars.png)
 
-viewusers
-![viewusers](./admin/src/assets/viewusers.png)
 
+
+updatecar
+![viewcars](./admin/src/assets/updatecar.png)
