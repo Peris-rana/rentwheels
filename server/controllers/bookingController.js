@@ -86,6 +86,14 @@ export const notificationController = async (req, res) => {
       .find({
         user: req.user.id,
       })
+      .populate("user")
+      .populate({
+        path: "booking",
+        populate: {
+          path: "car",
+          model: "Car", // Replace 'Car' with the actual model name of your car
+        },
+      })
       .exec();
     return res.status(200).json({
       notifications,

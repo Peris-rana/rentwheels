@@ -8,13 +8,16 @@
 .custom-opacity {
    opacity: 0.6;
 }
+img { 
+   object-fit: contain;
+}
 .notify { 
-   border-radius: 250%;
-   background-color: rgb(225, 102, 102);
-   color : #fff;
-   height : 34px;
-   width :25px;
-   padding : 10px;
+      background-color: red;
+      color: white;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      line-height: 24px;
       }
 main {
    max-width: 86vw;
@@ -25,6 +28,7 @@ main {
 }
 .extra-bold {
    font-weight: 900;
+   text-transform: capitalize;
 }
 
 .hero-parent > div > p {
@@ -54,7 +58,9 @@ main {
 .car-details { 
    height : 130px;
 }
-
+.cursor-pointer { 
+   cursor: pointer;
+}
 .rotate { 
 transform: rotate(358deg);
 background-color: rgb(255, 204, 177);

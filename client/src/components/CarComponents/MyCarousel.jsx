@@ -37,13 +37,22 @@ const MyCarousel = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let isValid = true;
-    if (!toLocation || !fromLocation) {
-      handleError("Location cannot be empty");
+    if (
+      !toLocation ||
+      !fromLocation ||
+      !isNaN(fromLocation) ||
+      !isNaN(toLocation)
+    ) {
+      handleError("Location cannot be empty and must not be a number");
       isValid = false;
       return;
     }
+    if (toLocation == fromLocation) {
+      handleError("Locations must be  different");
+      return;
+    }
 
-    if (!startDate || !endDate || startDate >= endDate) {
+    if (!startDate || !endDate || startDate > endDate) {
       handleError("Please select valid date");
       isValid = false;
       return;
@@ -51,6 +60,17 @@ const MyCarousel = () => {
     if (!isValid) {
       return;
     }
+    // Get the pick-up time and drop-off time from the DatePickers
+    // const pickUpTime = startDate.getHours() + ":" + startDate.getMinutes();
+    // const dropOffTime = endDate.getHours() + ":" + endDate.getMinutes();
+
+    const pickUpTime = `${startDate.getHours()}:${
+      startDate.getMinutes() < 10 ? "0" : ""
+    }${startDate.getMinutes()}`;
+    const dropOffTime = `${endDate.getHours()}:${
+      endDate.getMinutes() < 10 ? "0" : ""
+    }${endDate.getMinutes()}`;
+
     const data = {
       car: selectedCar._id,
       user: auth.user._id,
@@ -58,6 +78,8 @@ const MyCarousel = () => {
       endDate: endDate,
       fromLocation: fromLocation,
       toLocation: toLocation,
+      pickUpTime: pickUpTime,
+      dropOffTime: dropOffTime,
     };
     console.log(data);
     try {
@@ -73,6 +95,7 @@ const MyCarousel = () => {
     }
 
     handleClose();
+    window.location.reload();
   };
   const handleStartDateChange = (date) => {
     setStartDate(date);
@@ -154,9 +177,16 @@ const MyCarousel = () => {
               className="carousel-image"
             />
             {/* You can customize the card content based on your car data */}
-            <h3 className="fw-bold">{car.model}</h3>
+            <h3 className="fw-bold text-capitalize">{car.model}</h3>
             <h6>Specification</h6>
-            <i className="bi bi-person">{car.seats}</i>
+            <i className="bi bi-person p-1"></i>
+            {car.seats}
+            <i
+              className=" bi bi-fuel-pump"
+              style={{ marginLeft: "40px", paddingRight: "2px" }}
+            ></i>
+            {car.mileage}
+            km/l
             <h6>Features</h6>
             <p className=" mt-3 car-details">{car.details}</p>
             <p className="fs-5 ">Rs.{car.rentalPrice}</p>
@@ -232,6 +262,40 @@ const MyCarousel = () => {
 
             <Row>
               <Col className="mt-3">
+                <Form.Group controlId="formPickUpDate">
+                  <Form.Label>Start Date (pickup time )</Form.Label>
+                  <DatePicker
+                    selected={startDate}
+                    onChange={handleStartDateChange}
+                    className="form-control"
+                    dateFormat="MM/dd/yyyy"
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    timeCaption="Pick-up Time"
+                    placeholderText="Select pick-up date and time"
+                  />
+                </Form.Group>
+              </Col>
+              <Col className="mt-3">
+                <Form.Group controlId="formDropOffDate">
+                  <Form.Label>End Date (dropoff time )</Form.Label>
+                  <DatePicker
+                    selected={endDate}
+                    onChange={handleEndDateChange}
+                    className="form-control"
+                    dateFormat="MM/dd/yyyy"
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={15}
+                    timeCaption="Drop-off Time"
+                    placeholderText="Select drop-off date and time"
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+
+            {/* <Col className="mt-3">
                 <Form.Group controlId="formStartDate">
                   <Form.Label>Start Date</Form.Label>
                   <DatePicker
@@ -253,7 +317,7 @@ const MyCarousel = () => {
                   />
                 </Form.Group>
               </Col>
-            </Row>
+            </Row> */}
 
             <Button variant="primary mt-4" type="submit">
               Submit

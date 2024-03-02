@@ -9,7 +9,7 @@ const carSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    doors: {
+    mileage: {
       type: Number,
       required: true,
     },

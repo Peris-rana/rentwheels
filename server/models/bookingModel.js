@@ -17,6 +17,8 @@ const bookingSchema = new mongoose.Schema(
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     booked: { type: Boolean, default: false },
+    pickUpTime: { type: String, required: true },
+    dropOffTime: { type: String, required: true },
   },
   { timestamps: true }
 );

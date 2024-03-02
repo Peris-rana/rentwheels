@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 
 export const requireSignIn = (req, res, next) => {
   try {
-    console.log(req.headers.authorization);
     const verifiedToken = jwt.verify(
       req.headers.authorization,
       process.env.JWT_SECRET

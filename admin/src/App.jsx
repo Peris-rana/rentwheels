@@ -10,7 +10,9 @@ import ViewCar from "./pages/Car/ViewCar";
 import ViewBookings from "./pages/Booking/ViewBookings";
 import DeleteBooking from "./pages/Booking/DeleteBooking";
 const App = () => {
+
   return (
+    
     <div className="d-flex">
       <div className="w-auto">
         <Dashboard />

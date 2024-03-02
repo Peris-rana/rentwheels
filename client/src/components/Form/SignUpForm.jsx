@@ -23,7 +23,7 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (phoneNumber.length !== 10) {
+    if (phoneNumber.length <= 10) {
       handleError("Phone number must be exactly 10 digits long");
       return;
     }
@@ -31,8 +31,9 @@ const SignUpForm = () => {
       handleError("Email must start with a string");
       return;
     }
-    if (password.length !== 6) {
+    if (password.length < 6) {
       handleError("Password must have 6 characters");
+      return;
     }
     const formData = new FormData();
     formData.append("firstName", firstName);

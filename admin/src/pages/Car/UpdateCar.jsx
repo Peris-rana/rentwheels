@@ -10,7 +10,7 @@ const UpdateCar = () => {
   const [rentalPrice, setRentalPrice] = useState("");
   const [file, setFile] = useState("");
   const [seats, setSeats] = useState("");
-  const [door, setDoor] = useState("");
+  const [mileage, setMileage] = useState("");
 
   const handleSuccess = (message) => {
     toast.success(message);
@@ -19,6 +19,8 @@ const UpdateCar = () => {
     setDetails("");
     setRentalPrice("");
     setFile("");
+    setMileage("");
+    setSeats("");
   };
 
   const handleError = (message) => toast.error(message);
@@ -32,7 +34,7 @@ const UpdateCar = () => {
     formData.append("rentalPrice", rentalPrice);
     formData.append("file", file);
     formData.append("seats", seats);
-    formData.append("door", door);
+    formData.append("mileage", mileage);
 
     //display the data in the console
     formData.forEach((value, key) => {
@@ -93,16 +95,16 @@ const UpdateCar = () => {
                 }}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="model">
+            <Form.Group className="mb-3" controlId="seats">
               <Form.Label>Seats</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter number of seats"
-                name="model"
+                name="seats"
                 className="custom-input-style"
                 value={seats}
                 onChange={(e) => {
-                  setModel(e.target.value);
+                  setSeats(e.target.value);
                 }}
               />
             </Form.Group>
@@ -134,16 +136,16 @@ const UpdateCar = () => {
                 }}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="door">
-              <Form.Label>Doors</Form.Label>
+            <Form.Group className="mb-3" controlId="mileage">
+              <Form.Label>Mileage</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter number of doors"
-                name="model"
+                placeholder="Enter number of mileage"
+                name="mileage"
                 className="custom-input-style"
-                value={door}
+                value={mileage}
                 onChange={(e) => {
-                  setModel(e.target.value);
+                  setMileage(e.target.value);
                 }}
               />
             </Form.Group>
