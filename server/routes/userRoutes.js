@@ -16,7 +16,7 @@ router.post(
 );
 router.post('/login-user', loginUserController);
 router.get('/get-user', getUserController);
-router.delete('/delete-user/:id', deleteUserController);
+router.delete('/delete-user', deleteUserController);
 router.get('/test', requireSignIn, (req, res) => {
    res.send('protected route');
 });

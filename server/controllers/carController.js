@@ -103,7 +103,7 @@ export const updateCarController = async (req, res) => {
 
 //delete-car
 export const deleteCarController = async (req, res) => {
-  const carId = req.params.id; // Assuming the user ID is passed in the URL parameter
+  const carId = req.body.carId; // Assuming the user ID is passed in the URL parameter
 
   try {
     // Check if the user exists

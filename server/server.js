@@ -1,11 +1,11 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import connectDB from './config/db.js';
-import carRoutes from './routes/carRoutes.js';
-import userRoutes from './routes/userRoutes.js';
-import bookingRoutes from './routes/bookingRoute.js';
-import path from 'path';
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import connectDB from "./config/db.js";
+import carRoutes from "./routes/carRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import bookingRoutes from "./routes/bookingRoute.js";
+import path from "path";
 const port = 5900;
 const __dirname = process.cwd();
 
@@ -15,20 +15,24 @@ dotenv.config();
 connectDB();
 
 //middlewares
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: "*" }));
 app.use(
-   '/uploads/carImages',
-   express.static(path.join(__dirname, 'uploads', 'carImages'))
+  "/uploads/carImages",
+  express.static(path.join(__dirname, "uploads", "carImages"))
+);
+app.use(
+  "/uploads/license",
+  express.static(path.join(__dirname, "uploads", "license"))
 );
 app.use(express.json());
 //routes
-app.use('/api/car', carRoutes);
-app.use('/api/user', userRoutes);
-app.use('/api/bookings', bookingRoutes);
+app.use("/api/car", carRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/bookings", bookingRoutes);
 
-app.get('/', (req, res) => {
-   res.send('car-rental server');
+app.get("/", (req, res) => {
+  res.send("car-rental server");
 });
 app.listen(port, () => {
-   console.log('Server is running ...');
+  console.log("Server is running ...");
 });

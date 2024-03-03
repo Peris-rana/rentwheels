@@ -6,7 +6,7 @@ const Sidebar = () => {
   return (
     <div className="d-flex justify-content-between flex-column  p-5 sidebar">
       <div>
-        <Link to="/" className="p-3">
+        <Link to="/">
           <i className="bi bi-car-front-fill fs-4 me-4"></i>
           <span className="fs-4">RentWheels</span>
         </Link>
@@ -36,9 +36,6 @@ const Sidebar = () => {
                 <Dropdown.Item as={Link} to="/view-user">
                   View Users{" "}
                 </Dropdown.Item>
-                <Dropdown.Item as={Link} to="/delete-user">
-                  Delete User
-                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </li>
@@ -62,9 +59,6 @@ const Sidebar = () => {
                 <Dropdown.Item as={Link} to="/update-car">
                   Update Car
                 </Dropdown.Item>
-                <Dropdown.Item as={Link} to="/delete-car">
-                  Delete Car
-                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </li>
@@ -81,9 +75,6 @@ const Sidebar = () => {
               <Dropdown.Menu>
                 <Dropdown.Item as={Link} to="/view-bookings">
                   View Bookings
-                </Dropdown.Item>
-                <Dropdown.Item as={Link} to="/delete-booking">
-                  Delete Booking
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

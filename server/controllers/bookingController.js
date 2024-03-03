@@ -35,7 +35,7 @@ export const getBookingController = async (req, res) => {
 
 // delete a booking
 export const deleteBookingController = async (req, res) => {
-  const bookingId = req.params.bookingId;
+  const bookingId = req.body.bookingId;
   try {
     const booking = await bookingModel.findByIdAndDelete(bookingId);
     if (!booking) {
@@ -91,7 +91,7 @@ export const notificationController = async (req, res) => {
         path: "booking",
         populate: {
           path: "car",
-          model: "Car", // Replace 'Car' with the actual model name of your car
+          model: "Car", 
         },
       })
       .exec();

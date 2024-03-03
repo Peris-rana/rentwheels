@@ -26,16 +26,25 @@ const AddUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (phoneNumber.length !== 10) {
-      handleError("Phone number must be exactly 10 digits long");
+    if (phoneNumber.length < 10) {
+      handleError("Invalid number");
+      return;
+    }
+    if (!/^98\d{8}$/.test(phoneNumber)) {
+      handleError("Phone number not valid");
       return;
     }
     if (!/^[a-zA-Z]/.test(email)) {
       handleError("Email must start with a string");
       return;
     }
-    if (password.length !== 6) {
-      handleError("Password must have 6 characters");
+    if (password.length < 6) {
+      handleError("Password must have at least 6 characters");
+      return;
+    }
+    if (!file) {
+      handleError("License file must be provided");
+      return;
     }
     // Handle form submission logic here
     const formData = new FormData();
@@ -63,6 +72,9 @@ const AddUser = () => {
       if (response.data.success) {
         // Handle successful registration
         handleSuccess(response.data.message);
+        setTimeout(() => {
+          window.location.reload();
+        }, 900);
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -113,7 +125,7 @@ const AddUser = () => {
             </Form.Group>
 
             {/* License */}
-            <Form.Group className="mb-4" controlId="license" key={file}>
+            <Form.Group className="mb-4" controlId="license">
               <Form.Label>License</Form.Label>
               <Form.Control
                 type="file"

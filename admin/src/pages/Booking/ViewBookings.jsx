@@ -52,6 +52,24 @@ const ViewBookings = () => {
       handleError(error);
     }
   };
+  const deleteBooking = async (bookingId) => {
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_APP_API}/api/bookings/delete-booking`,
+        {
+          data: {
+            bookingId,
+          },
+        }
+      );
+      handleSuccess(response.data.message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 700);
+    } catch (error) {
+      handleError(error);
+    }
+  };
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(); // Format the date string
@@ -63,17 +81,15 @@ const ViewBookings = () => {
       <Table hover>
         <thead>
           <tr>
-            <th>ID</th>
+            {/* <th>ID</th> */}
             <th>Name</th>
             <th>Number</th>
-            <th>Model</th>
-            <th>Price</th>
             <th>Location</th>
             <th>Start</th>
-            <th>End</th>
-            <th>booked days </th>
-            <th>Total</th>
             <th>Pickup</th>
+            <th>Price</th>
+            <th>Days </th>
+            <th>Total</th>
             <th>Booked</th>
           </tr>
         </thead>
@@ -81,19 +97,18 @@ const ViewBookings = () => {
           {bookingData.map((booking) => {
             return (
               <tr key={booking._id}>
-                <td className="text-success"> {booking._id}</td>
+                {/* <td className="text-success"> {booking._id}</td> */}
                 <td>
                   {" "}
                   {booking.user.firstName} {booking.user.lastName}
                 </td>
                 <td> {booking.user.phoneNumber}</td>
-                <td> {booking.car.model}</td>
-                <td> Rs {booking.car.rentalPrice}</td>
                 <td>
                   {booking.fromLocation}- {booking.toLocation}
                 </td>
                 <td className="text-danger">{formatDate(booking.startDate)}</td>
-                <td className="text-danger">{formatDate(booking.endDate)}</td>
+                <td>{booking.pickUpTime}</td>
+                <td> Rs {booking.car.rentalPrice}</td>
                 <td>
                   {" "}
                   {getNumberOfDays(booking.startDate, booking.endDate) + 1}
@@ -104,18 +119,31 @@ const ViewBookings = () => {
                   {(getNumberOfDays(booking.startDate, booking.endDate) + 1) *
                     booking.car.rentalPrice}
                 </td>
-                <td>{booking.pickUpTime}</td>
                 <td>{booking.booked.toString()}</td>
-                {!booking.booked && (
+                <td>
+                  <img
+                    height={80}
+                    src={`${import.meta.env.VITE_APP_API}/${booking.car.image}`}
+                  />
+                </td>
+                <td>
+                  {!booking.booked && (
+                    <Button
+                      className="btn btn-success p-2 bi bi-check2-circle"
+                      onClick={() => {
+                        acceptBooking(booking.user._id, booking._id);
+                      }}
+                    ></Button>
+                  )}
+                </td>
+                <td>
                   <Button
-                    className="btn btn-secondary"
+                    className="btn m-0 p-2 btn-danger bi bi-trash-fill"
                     onClick={() => {
-                      acceptBooking(booking.user._id, booking._id);
+                      deleteBooking(booking._id);
                     }}
-                  >
-                    accept
-                  </Button>
-                )}
+                  ></Button>
+                </td>
               </tr>
             );
           })}

@@ -4,15 +4,10 @@ import AddCar from "./pages/Car/AddCar";
 import UpdateCar from "./pages/Car/UpdateCar";
 import AddUser from "./pages/User/AddUser";
 import ViewUser from "./pages/User/ViewUser";
-import DeleteUser from "./pages/User/DeleteUser";
-import DeleteCar from "./pages/Car/DeleteCar";
 import ViewCar from "./pages/Car/ViewCar";
 import ViewBookings from "./pages/Booking/ViewBookings";
-import DeleteBooking from "./pages/Booking/DeleteBooking";
 const App = () => {
-
   return (
-    
     <div className="d-flex">
       <div className="w-auto">
         <Dashboard />
@@ -49,13 +44,10 @@ const App = () => {
           />
           <Route path="/add-user" element={<AddUser />} />
           <Route path="/view-user" element={<ViewUser />} />
-          <Route path="/delete-user" element={<DeleteUser />} />
           <Route path="/add-car" element={<AddCar />} />
           <Route path="/view-cars" element={<ViewCar />} />
           <Route path="/update-car" element={<UpdateCar />} />
-          <Route path="/delete-car" element={<DeleteCar />} />
           <Route path="/view-bookings" element={<ViewBookings />} />
-          <Route path="/delete-booking" element={<DeleteBooking />}></Route>
         </Routes>
       </div>
     </div>

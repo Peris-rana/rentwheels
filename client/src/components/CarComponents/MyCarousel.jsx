@@ -226,13 +226,13 @@ const MyCarousel = () => {
         <Modal.Body>
           <p className="fs-5 extra-bold">{selectedCar && selectedCar.model}</p>
           {selectedCar && (
-            <>
+            <div className="d-flex justify-content-center align-items-center">
               <img
                 src={`${import.meta.env.VITE_APP_API}/${selectedCar.image}`}
                 alt={selectedCar.model}
                 className="selected-carousel-image"
               />
-            </>
+            </div>
           )}
           <Form onSubmit={handleSubmit} autoComplete="off">
             <Row>
@@ -268,12 +268,13 @@ const MyCarousel = () => {
                     selected={startDate}
                     onChange={handleStartDateChange}
                     className="form-control"
-                    dateFormat="MM/dd/yyyy"
+                    dateFormat="MM/dd/yyyy h:mm aa"
                     showTimeSelect
-                    timeFormat="HH:mm"
+                    timeFormat="h:mm aa"
                     timeIntervals={15}
-                    timeCaption="Pick-up Time"
+                    timeCaption="Time"
                     placeholderText="Select pick-up date and time"
+                    timeInputLabel="Time:"
                   />
                 </Form.Group>
               </Col>
@@ -284,12 +285,12 @@ const MyCarousel = () => {
                     selected={endDate}
                     onChange={handleEndDateChange}
                     className="form-control"
-                    dateFormat="MM/dd/yyyy"
+                    dateFormat="MM/dd/yyyy h:mm aa"
                     showTimeSelect
-                    timeFormat="HH:mm"
+                    timeFormat="h:mm aa"
                     timeIntervals={15}
-                    timeCaption="Drop-off Time"
-                    placeholderText="Select drop-off date and time"
+                    timeCaption="Time"
+                    placeholderText="Select pick-up date and time"
                   />
                 </Form.Group>
               </Col>
@@ -320,7 +321,7 @@ const MyCarousel = () => {
             </Row> */}
 
             <Button variant="primary mt-4" type="submit">
-              Submit
+              Book
             </Button>
           </Form>
         </Modal.Body>

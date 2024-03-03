@@ -80,12 +80,10 @@ Form {
    font-size: 10px;
 }
 thead tr th {
-   opacity: 0.8;
    font-size: 12px; 
 }
 table tbody {
    font-size: 8px;
-   opacity: 0.7;
 }
 
 .custom-app-button {
@@ -99,4 +97,20 @@ table tbody {
 }
 .custom-td {
    color: #3ea829 !important ;
+}
+
+.img-container > img {
+object-fit: contain; 
+height:50%;
+width : 50%;
+aspect-ratio: 3/2;
+}
+.img-container{ 
+cursor: pointer;
+width : 400px;
+object-fit: contain;
+}
+.img-container:hover , .img-container>img:hover{ 
+transform: scale(2);
+z-index: 999999999;
 }

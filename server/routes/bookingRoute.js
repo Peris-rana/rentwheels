@@ -13,6 +13,6 @@ const router = express.Router();
 router.post("/add-booking", addBookingController);
 router.post("/accept-booking", acceptBookingController);
 router.get("/get-booking", getBookingController);
-router.delete("/delete-booking/:bookingId", deleteBookingController);
+router.delete("/delete-booking", deleteBookingController);
 router.get("/get-notification", requireSignIn, notificationController);
 export default router;
