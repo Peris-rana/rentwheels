@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Modal } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 
 const handleSuccess = (message) => {
@@ -11,6 +11,17 @@ const handleError = (message) => {
 };
 const ViewUser = () => {
   const [userData, setUserData] = useState([]);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [userIdToDelete, setUserIdToDelete] = useState(null);
+  const handleDeleteClick = (userId) => {
+    setUserIdToDelete(userId);
+    setShowConfirmation(true);
+  };
+  const confirmDelete = () => {
+    deleteUser(userIdToDelete);
+    setShowConfirmation(false);
+    deleteUser;
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -74,7 +85,7 @@ const ViewUser = () => {
                 <Button
                   className="btn m-0 p-2 btn-danger bi bi-trash-fill"
                   onClick={() => {
-                    deleteUser(user._id);
+                    handleDeleteClick(user._id);
                   }}
                 ></Button>
               </td>
@@ -82,6 +93,20 @@ const ViewUser = () => {
           ))}
         </tbody>
       </Table>
+      <Modal show={showConfirmation} onHide={() => setShowConfirmation(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this user?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={() => setShowConfirmation(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={confirmDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <ToastContainer
         position="top-center"
         pauseOnHover={true}

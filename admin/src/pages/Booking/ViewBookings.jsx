@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Modal } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 
 const handleSuccess = (message) => {
@@ -11,6 +11,17 @@ const handleError = (message) => {
 };
 const ViewBookings = () => {
   const [bookingData, setBookingData] = useState([]);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [bookingIdToDelete, setBookingIdToDelete] = useState(null);
+  const handleDeleteClick = (carId) => {
+    setBookingIdToDelete(carId);
+    setShowConfirmation(true);
+  };
+
+  const confirmDelete = () => {
+    deleteBooking(bookingIdToDelete);
+    setShowConfirmation(false);
+  };
 
   useEffect(() => {
     const fetchBookingData = async () => {
@@ -140,7 +151,7 @@ const ViewBookings = () => {
                   <Button
                     className="btn m-0 p-2 btn-danger bi bi-trash-fill"
                     onClick={() => {
-                      deleteBooking(booking._id);
+                      handleDeleteClick(booking._id);
                     }}
                   ></Button>
                 </td>
@@ -149,6 +160,20 @@ const ViewBookings = () => {
           })}
         </tbody>
       </Table>
+      <Modal show={showConfirmation} onHide={() => setShowConfirmation(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this Booking?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={() => setShowConfirmation(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={confirmDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <ToastContainer
         position="top-center"
         pauseOnHover={true}

@@ -2,7 +2,6 @@ import { Card, Row, Col, Button, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { Link } from "react-router-dom";
 
 const handleSuccess = (message) => {
   toast.success(message);
@@ -12,7 +11,6 @@ const handleError = (message) => {
 };
 const ViewCar = () => {
   const [carData, setCarData] = useState([]);
-
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [carIdToDelete, setCarIdToDelete] = useState(null);
   const handleDeleteClick = (carId) => {
@@ -21,9 +19,7 @@ const ViewCar = () => {
   };
 
   const confirmDelete = () => {
-    // Call the deleteCar function here
-    deleteUser(carIdToDelete);
-    // Close the confirmation modal
+    deleteCar(carIdToDelete);
     setShowConfirmation(false);
   };
 
@@ -42,7 +38,7 @@ const ViewCar = () => {
     };
     fetchUserData();
   }, []);
-  const deleteUser = async (carId) => {
+  const deleteCar = async (carId) => {
     try {
       const response = await axios.delete(
         `${import.meta.env.VITE_APP_API}/api/car/delete-car`,
