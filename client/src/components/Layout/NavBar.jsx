@@ -20,6 +20,7 @@ function NavBar() {
       setAuth({ ...auth, user: null, token: "" });
     }, 0);
   };
+
   useEffect(() => {
     getNotifications();
   }, []);
@@ -48,7 +49,7 @@ function NavBar() {
           <Navbar.Brand href="/" className="extra-bold fs-4">
             RentWheels
           </Navbar.Brand>
-          <div className="d-flex">
+          <div className="d-flex bell">
             {auth?.user && notifications.length > 0 && (
               <>
                 <Notify notifications={notifications} />

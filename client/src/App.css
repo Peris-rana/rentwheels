@@ -108,7 +108,9 @@ padding : 10px
       flex-direction: column;
    }
    .bell { 
-
       margin-right: 50px
+      }
+      .spec { 
+      flex-wrap : wrap
       }
 }

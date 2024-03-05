@@ -13,8 +13,8 @@ const ViewBookings = () => {
   const [bookingData, setBookingData] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [bookingIdToDelete, setBookingIdToDelete] = useState(null);
-  const handleDeleteClick = (carId) => {
-    setBookingIdToDelete(carId);
+  const handleDeleteClick = (bookingId) => {
+    setBookingIdToDelete(bookingId);
     setShowConfirmation(true);
   };
 

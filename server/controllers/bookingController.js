@@ -43,6 +43,8 @@ export const deleteBookingController = async (req, res) => {
     }
     const carId = booking.car;
     await carModel.findByIdAndUpdate(carId, { available: true });
+    await notificationModel.deleteMany({ booking: bookingId });
+
     res.status(200).json({
       success: true,
       message: "Booking deleted successfully",
@@ -91,7 +93,7 @@ export const notificationController = async (req, res) => {
         path: "booking",
         populate: {
           path: "car",
-          model: "Car", 
+          model: "Car",
         },
       })
       .exec();
@@ -99,4 +101,34 @@ export const notificationController = async (req, res) => {
       notifications,
     });
   } catch (error) {}
+};
+
+// cancel booking request
+
+export const cancelRequestController = async (req, res) => {
+  const bookingId = req.body.bookingId;
+  try {
+    const booking = await bookingModel.findByIdAndUpdate(
+      bookingId,
+      {
+        booked: false,
+        updatedAt: new Date(),
+      },
+      {
+        new: true,
+      }
+    );
+    if (!booking) {
+      return res.status(404).json({ message: "booking not available" });
+    }
+    await notificationModel.deleteMany({ booking: bookingId });
+
+    res.status(200).json({
+      success: true,
+      messaage: "Cancellation successful",
+      booking: booking,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };

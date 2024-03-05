@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import Modal from "react-bootstrap/Modal";
+import { Button, Modal } from "react-bootstrap";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const handleSuccess = (message) => {
   toast.success(message);
+};
+const handleError = (message) => {
+  toast.error(message);
 };
 
 function getNumberOfDays(startDate, endDate) {
@@ -27,6 +29,16 @@ function getNumberOfDays(startDate, endDate) {
 function Notify() {
   const [show, setShow] = useState(false);
   const [notifications, setNotifications] = useState([]);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [bookingIdToCancel, setBookingIdToCancel] = useState(null);
+
+  const handleCancelClick = (bookingId) => {
+    setBookingIdToCancel(bookingId);
+    setShowConfirmation(true);
+  };
+  const confimCancel = () => {
+    cancelBooking(bookingIdToCancel);
+  };
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -49,17 +61,33 @@ function Notify() {
       console.log(err);
     }
   };
-
-  const cancelBooking = () => {
-    handleSuccess("Cancel request processing");
+  useEffect(() => {
+    cancelBooking();
+  }, []);
+  const cancelBooking = async (bookingId) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_APP_API}/api/bookings/cancel-booking`,
+        {
+          bookingId,
+        },
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("auth")).token,
+          },
+        }
+      );
+      console.log(response.data);
+      handleSuccess(response.data.message);
+      window.location.reload();
+    } catch (error) {
+      handleError(error);
+    }
   };
+
   return (
     <>
-      <i
-        onClick={handleShow}
-        className="bi bi-bell cursor-pointer p-2 bell"
-      ></i>
-
+      <i onClick={handleShow} className="bi bi-bell cursor-pointer p-2"></i>
       <Modal
         show={show}
         onHide={handleClose}
@@ -117,21 +145,41 @@ function Notify() {
                   at the location
                   <strong> {data.booking.fromLocation}</strong>
                 </p>
+                <p className="text-secondary ">
+                  if you wish to cancel the booking click on cancel.
+                  <span className="d-block fw-bold text-danger">
+                    {" "}
+                    NOTE !!! This action cannot be undone
+                  </span>
+                </p>
+                <Button
+                  className="btn btn-danger w-100"
+                  onClick={() => {
+                    handleCancelClick(data.booking._id);
+                  }}
+                >
+                  CANCEL
+                </Button>
               </div>
             );
           })}
-          <p className="text-secondary">
-            if you wish to cancel the booking click on cancel.
-            <span className="d-block fw-bold text-danger">
-              {" "}
-              NOTE !!!This action cannot be undone
-            </span>
-          </p>
-          <Button className="btn btn-danger w-100" onClick={cancelBooking}>
-            CANCEL
-          </Button>
         </Modal.Body>
       </Modal>
+      <Modal show={showConfirmation} onHide={() => setShowConfirmation(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to cancel this Booking?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={confimCancel}>
+            Yes
+          </Button>
+          <Button variant="danger" onClick={() => setShowConfirmation(false)}>
+            No
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <ToastContainer
         position="top-center"
         pauseOnHover={true}
@@ -140,6 +188,4 @@ function Notify() {
     </>
   );
 }
-
 export default Notify;
-//sum of two numbers

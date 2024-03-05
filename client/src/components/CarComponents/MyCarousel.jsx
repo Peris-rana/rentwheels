@@ -170,7 +170,7 @@ const MyCarousel = () => {
         infinite={true}
       >
         {carData.map((car, index) => (
-          <div key={index}>
+          <div key={index} className="m-3">
             <img
               src={`${import.meta.env.VITE_APP_API}/${car.image}`}
               alt={car.model}
@@ -226,12 +226,28 @@ const MyCarousel = () => {
         <Modal.Body>
           <p className="fs-5 extra-bold">{selectedCar && selectedCar.model}</p>
           {selectedCar && (
-            <div className="d-flex justify-content-center align-items-center">
+            <div className="d-flex justify-content-center align-items-center spec">
               <img
                 src={`${import.meta.env.VITE_APP_API}/${selectedCar.image}`}
                 alt={selectedCar.model}
                 className="selected-carousel-image"
               />
+              <div className="m-2">
+                <i className="bi bi-person m-1 p-1"></i>
+                {selectedCar.seats}
+                <i
+                  className=" bi bi-fuel-pump m-1"
+                  style={{
+                    marginLeft: "40px",
+                    paddingRight: "2px",
+                  }}
+                ></i>
+                {selectedCar.mileage}
+                km/l
+                <div className="m-2">
+                  <p>{selectedCar.details}</p>
+                </div>
+              </div>
             </div>
           )}
           <Form onSubmit={handleSubmit} autoComplete="off">

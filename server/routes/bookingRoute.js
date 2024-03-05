@@ -15,4 +15,5 @@ router.post("/accept-booking", acceptBookingController);
 router.get("/get-booking", getBookingController);
 router.delete("/delete-booking", deleteBookingController);
 router.get("/get-notification", requireSignIn, notificationController);
+router.post("/cancel-booking/", requireSignIn, deleteBookingController);
 export default router;
