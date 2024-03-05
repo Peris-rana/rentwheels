@@ -8,12 +8,14 @@ import Col from "react-bootstrap/Col";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 const SignUpForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [file, setFile] = useState("");
   const navigate = useNavigate();
@@ -115,13 +117,15 @@ const SignUpForm = () => {
                 accept="image/png,image/jpeg,image/jpg/"
                 onChange={(e) => setFile(e.target.files[0])}
               />
-              <Form.Control
-                className="mb-4"
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <div className="position-relative">
+                <Form.Control
+                  className="mb-4"
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
             </Form.Group>
           </Col>
           <Col md={{ span: 6 }}>
@@ -140,13 +144,25 @@ const SignUpForm = () => {
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
-              <Form.Control
-                className="mb-4"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div className="position-relative">
+                <Form.Control
+                  className="mb-4"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {password && (
+                  <i
+                    className=" text-secondary position-absolute end-0 top-50 translate-middle-y p-4"
+                    onClick={() => {
+                      setShowPassword(!showPassword);
+                    }}
+                  >
+                    {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
+                  </i>
+                )}
+              </div>
             </Form.Group>
           </Col>
         </Row>

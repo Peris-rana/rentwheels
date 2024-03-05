@@ -10,19 +10,22 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import { Link } from "react-router-dom";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
+
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
   const handleSuccess = (message) => toast.success(message);
   const handleError = (message) => toast.error(message);
   const handleSubmit = async (e) => {
     e.preventDefault();
-     if (!/^[a-zA-Z]/.test(email)) {
-       handleError("Email must start with a string");
-       return;
-     }
+    if (!/^[a-zA-Z]/.test(email)) {
+      handleError("Email must start with a string");
+      return;
+    }
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_APP_API}/api/user/login-user`,
@@ -82,25 +85,34 @@ const LoginForm = () => {
               />
             </Form.Group>
             <Form.Group className="mb-4" controlId="formBasicPassword">
-              <Form.Control
-                className="mb-4"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
+              <div className="position-relative">
+                <Form.Control
+                  className="mb-4 pr-5"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+                {password && (
+                  <i
+                    className="text-secondary position-absolute end-0 top-50 translate-middle-y p-4"
+                    onClick={() => {
+                      setShowPassword(!showPassword);
+                    }}
+                  >
+                    {showPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
+                  </i>
+                )}
+              </div>
             </Form.Group>
             <div className="d-flex align-items-center log-in">
               <Button variant="primary" className="btn ml-3" type="submit">
                 Log in
               </Button>
               <div className="p-4">
-                <Link to="/signup">
-                  {" "}
-                  create new account
-                </Link>
+                <Link to="/signup"> create new account</Link>
               </div>
             </div>
           </Form>

@@ -187,9 +187,9 @@ const MyCarousel = () => {
             ></i>
             {car.mileage}
             km/l
-            <h6>Features</h6>
+            <h6 className="mt-3">Features</h6>
             <p className=" mt-3 car-details">{car.details}</p>
-            <p className="fs-5 ">Rs.{car.rentalPrice}</p>
+            <p className="fs-5 mt-3">Rs.{car.rentalPrice}</p>
             <div>
               {car.available ? (
                 <button
@@ -236,7 +236,7 @@ const MyCarousel = () => {
                 <i className="bi bi-person m-1 p-1"></i>
                 {selectedCar.seats}
                 <i
-                  className=" bi bi-fuel-pump m-1"
+                  className=" bi bi-fuel-pump p-1"
                   style={{
                     marginLeft: "40px",
                     paddingRight: "2px",

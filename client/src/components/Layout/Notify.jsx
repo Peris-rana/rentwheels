@@ -167,7 +167,7 @@ function Notify() {
       </Modal>
       <Modal show={showConfirmation} onHide={() => setShowConfirmation(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Delete</Modal.Title>
+          <Modal.Title>Confirm Cancel</Modal.Title>
         </Modal.Header>
         <Modal.Body>Are you sure you want to cancel this Booking?</Modal.Body>
         <Modal.Footer>
