@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const handleSuccess = (message) => {
+  toast.success(message);
+};
 
 function getNumberOfDays(startDate, endDate) {
   // Convert start and end dates to Unix timestamps
-  console.log(typeof startDate);
   startDate = new Date(startDate);
   endDate = new Date(endDate);
 
@@ -44,9 +50,15 @@ function Notify() {
     }
   };
 
+  const cancelBooking = () => {
+    handleSuccess("Cancel request processing");
+  };
   return (
     <>
-      <i onClick={handleShow} className="bi bi-bell cursor-pointer "></i>
+      <i
+        onClick={handleShow}
+        className="bi bi-bell cursor-pointer p-2 bell"
+      ></i>
 
       <Modal
         show={show}
@@ -62,7 +74,7 @@ function Notify() {
         <Modal.Body>
           {notifications.map((data) => {
             return (
-              <>
+              <div key={data._id}>
                 <strong key={data._id}>{data.message}</strong>
                 <img
                   style={{
@@ -105,13 +117,29 @@ function Notify() {
                   at the location
                   <strong> {data.booking.fromLocation}</strong>
                 </p>
-              </>
+              </div>
             );
           })}
+          <p className="text-secondary">
+            if you wish to cancel the booking click on cancel.
+            <span className="d-block fw-bold text-danger">
+              {" "}
+              NOTE !!!This action cannot be undone
+            </span>
+          </p>
+          <Button className="btn btn-danger w-100" onClick={cancelBooking}>
+            CANCEL
+          </Button>
         </Modal.Body>
       </Modal>
+      <ToastContainer
+        position="top-center"
+        pauseOnHover={true}
+        hideProgressBar={true}
+      />
     </>
   );
 }
 
 export default Notify;
+//sum of two numbers

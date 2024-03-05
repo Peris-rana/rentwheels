@@ -107,4 +107,8 @@ padding : 10px
       display: flex;
       flex-direction: column;
    }
+   .bell { 
+
+      margin-right: 50px
+      }
 }

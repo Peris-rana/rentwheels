@@ -190,7 +190,7 @@ const MyCarousel = () => {
             <h6>Features</h6>
             <p className=" mt-3 car-details">{car.details}</p>
             <p className="fs-5 ">Rs.{car.rentalPrice}</p>
-            <p>
+            <div>
               {car.available ? (
                 <button
                   className=" btn btn-primary "
@@ -207,7 +207,7 @@ const MyCarousel = () => {
               ) : (
                 <p className="text-danger fs-4  rotate">Not Available </p>
               )}
-            </p>
+            </div>
           </div>
         ))}
       </Carousel>

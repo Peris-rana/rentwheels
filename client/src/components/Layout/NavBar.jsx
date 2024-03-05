@@ -44,20 +44,22 @@ function NavBar() {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" className="">
-        <Container className="bg-white p-0  m-0">
+        <Container className="bg-white d-flex">
           <Navbar.Brand href="/" className="extra-bold fs-4">
             RentWheels
           </Navbar.Brand>
+          <div className="d-flex">
+            {auth?.user && notifications.length > 0 && (
+              <>
+                <Notify notifications={notifications} />
+                <p className=" rounded notify">{notifications.length}</p>
+              </>
+            )}
+          </div>
           <Navbar.Toggle
             aria-controls="responsive-navbar-nav"
-            className="custom-toggle p-0"
+            className="custom-toggle"
           />
-          {auth?.user && notifications.length > 0 && (
-            <>
-              <Notify notifications={notifications} />
-              <p className=" rounded notify ">{notifications.length}</p>
-            </>
-          )}
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto ">
               {/* <Nav.Link href="home">Home</Nav.Link> */}

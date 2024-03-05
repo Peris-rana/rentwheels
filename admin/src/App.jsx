@@ -31,7 +31,7 @@ const App = () => {
               <>
                 {" "}
                 <div className="title">
-                  Welcome to the admin &nbsp;
+                  rentwheels admin &nbsp;
                   <img
                     src="../src/assets/car-svgrepo-com.svg"
                     height="300px"
