@@ -1,0 +1,94 @@
+[
+  {
+    "_id": {
+      "$oid": "659ea8c2a9829258e4c62247"
+    },
+    "model": "brezza",
+    "details": "Maruti Suzuki Vitara Brezza, a compact SUV from India, offers a 1.5L petrol engine, manual or automatic options, sporty design, touchscreen, and safety features.",
+    "rentalPrice": 4999,
+    "available": true,
+    "image": "./uploads/carImages/brezza.png",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1704896706411"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1710351527432"
+      }
+    },
+    "__v": 0,
+    "seats": 4,
+    "mileage": 18
+  },
+  {
+    "_id": {
+      "$oid": "659edbf2a9be40577b822918"
+    },
+    "model": "tata",
+    "details": " The Tata Tigor is a compact sedan known for its stylish design. It offers good mileage, comfortable seating, and modern features for an enjoyable driving experience.",
+    "rentalPrice": 2599,
+    "available": true,
+    "image": "./uploads/carImages/tata.png",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1704909810766"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1710304063086"
+      }
+    },
+    "__v": 0,
+    "seats": 5,
+    "mileage": 10
+  },
+  {
+    "_id": {
+      "$oid": "65ad416aa8318c75f413bb2b"
+    },
+    "model": "Jimmy",
+    "details": " All-new 5 Door Jimny: Off-road spirit in its veins, embracing adventure. Start where you paused, tread higher, navigate deeper, reaching the impossible and beyond, never looking back.",
+    "rentalPrice": 5999,
+    "available": true,
+    "image": "./uploads/carImages/Jimmy.png",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1705853290737"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1710337757215"
+      }
+    },
+    "__v": 0,
+    "seats": 5,
+    "mileage": 19
+  },
+  {
+    "_id": {
+      "$oid": "65ad4259a8318c75f413bb33"
+    },
+    "model": "baleno",
+    "details": " Baleno's powerful stance, iconic body, and innovative features go beyond personification. They symbolize the car's attitude and the mettle that defines its character and purpose.",
+    "rentalPrice": 4099,
+    "available": true,
+    "image": "./uploads/carImages/baleno.png",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1705853529784"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1710338950649"
+      }
+    },
+    "__v": 0,
+    "seats": 3,
+    "mileage": 10.6
+  }
+]

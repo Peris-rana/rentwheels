@@ -1,0 +1,68 @@
+services:
+  client:
+    build:
+      context: "../client"
+      dockerfile: Dockerfile
+    ports:
+      - 5173:5173
+    container_name: client
+    networks:
+      - rentwheels-net
+    volumes:
+      - ../client:/app
+    depends_on:
+      - server
+    env_file:
+      - ../client/.env
+  admin:
+    build:
+      context: "../admin"
+      dockerfile: Dockerfile
+    ports:
+      - 5174:5174
+    container_name: admin
+    networks:
+      - rentwheels-net
+    volumes:
+      - ../admin:/app
+    depends_on:
+      - server
+    env_file:
+      - ../admin/.env
+  server:
+    build:
+      context: "../server"
+      dockerfile: Dockerfile
+    ports:
+      - 5900:5900
+    container_name: server
+    networks:
+      - rentwheels-net
+    volumes:
+      - ../server:/app
+    depends_on:
+      - mongo
+    env_file:
+      - ../server/.env
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    container_name: mongo-db-con
+    networks:
+      - rentwheels-net
+    volumes:
+      - mongoData:/data/db
+      - ./cars.json:/docker-entrypoint-initdb.d/cars.json
+    command: >
+      bash -c "
+      mongod --bind_ip_all --fork --logpath /var/log/mongodb.log &&
+      mongoimport --db car-rental-system --collection cars --file /docker-entrypoint-initdb.d/cars.json --jsonArray &&
+      tail -f /dev/null
+      "
+
+networks:
+  rentwheels-net:
+    driver: bridge
+volumes:
+  mongoData:
