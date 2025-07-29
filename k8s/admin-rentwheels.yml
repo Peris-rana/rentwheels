@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rentwheels-admin-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rentwheels-admin
+  template:
+    metadata:
+      labels:
+        app: rentwheels-admin
+    spec:
+      containers:
+        - name: rentwheels-admin
+          image: peris24/admin:prod
+          ports:
+            - containerPort: 80 # port for admin interface
+          env:
+            - name: VITE_APP_API
+              value: http://rentwheels-server-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rentwheels-admin-service
+spec:
+  selector:
+    app: rentwheels-admin # must match the label in the deployment
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80 # must match the containerPort
+      nodePort: 30081 # external port for admin service 
+  type: NodePort

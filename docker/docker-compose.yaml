@@ -10,10 +10,13 @@ services:
       - rentwheels-net
     volumes:
       - ../client:/app
+      - /app/node_modules
     depends_on:
       - server
     env_file:
       - ../client/.env
+    environment:
+      - NODE_ENV=development
   admin:
     build:
       context: "../admin"
@@ -25,10 +28,13 @@ services:
       - rentwheels-net
     volumes:
       - ../admin:/app
+      - /app/node_modules
     depends_on:
       - server
     env_file:
       - ../admin/.env
+    environment:
+      - NODE_ENV=development
   server:
     build:
       context: "../server"
@@ -40,10 +46,13 @@ services:
       - rentwheels-net
     volumes:
       - ../server:/app
+      - /app/node_modules
     depends_on:
       - mongo
     env_file:
       - ../server/.env
+    environment:
+      - NODE_ENV=development
   mongo:
     image: mongo
     ports:

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rentwheels-client-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rentwheels-client
+  template:
+    metadata:
+      labels:
+        app: rentwheels-client
+    spec:
+      containers:
+        - name: rentwheels-client
+          image: peris24/client:prod
+          ports:
+            - containerPort: 80 # port for client interface
+          env:
+            - name: VITE_APP_API
+              value: http://rentwheels-server-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rentwheels-client-service
+spec:
+  selector:
+    app: rentwheels-client # must match the label in the deployment
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80 # must match the containerPort
+      nodePort: 30080 # external port for client service
+  type: NodePort

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rentwheels-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rentwheels-server
+  template:
+    metadata:
+      labels:
+        app: rentwheels-server
+    spec:
+      containers:
+        - name: rentwheels-server
+          image: peris24/server:latest
+          ports:
+            - containerPort: 5900
+          env:
+            - name: MONGO_URL
+              value: mongodb://rentwheels-mongo-service:27017/car-rental-system
+            - name: JWT_SECRET
+              value: qazwsx
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rentwheels-server-service
+spec:
+  selector:
+    app: rentwheels-server
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5900
+      nodePort: 30082
+  type: NodePort
